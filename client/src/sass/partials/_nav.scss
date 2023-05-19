@@ -1,0 +1,125 @@
+.landing_desktop-nav {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  a {
+    @include reset-anchor($light-color);
+    transition: 0.3s ease-in-out;
+  }
+
+  .landing_desktop_nav_list {
+    display: inline-flex;
+    justify-content: space-between;
+    // width: 85%;
+    flex-basis: 90%;
+    margin: auto;
+    align-items: center;
+  }
+
+  .landing_desktop-nav:first-child {
+    flex-basis: 10%;
+  }
+
+  ul {
+    @include reset-list;
+    a {
+      @include reset-anchor($light-color);
+      transition: 0.3s ease-in-out;
+    }
+    display: inline-block;
+    li {
+      display: inline-block;
+      margin-left: 1rem;
+
+      &:hover a {
+        color: $yellow;
+      }
+    }
+  }
+  .landing-mobile-nav {
+    display: none;
+  }
+}
+
+.landing-mobile-nav-list {
+  display: none;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  width: 100%;
+  padding: 2rem 2rem 4rem 2rem;
+  box-shadow: 1px 2px 8px #171212;
+  background-color: $dark-color;
+  flex-direction: column;
+  transition: 0.3s ease-in-out;
+
+  .landing_btn_2 {
+    margin-left: 0;
+  }
+
+  ul {
+    @include reset-list;
+    margin-bottom: 2rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      a {
+        @include reset-anchor($light-color);
+        transition: 0.3s ease-in-out;
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .landing_desktop-nav {
+    .landing_desktop_nav_list {
+      flex-basis: 85%;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .landing_desktop-nav {
+    .landing_desktop_nav_list {
+      display: none;
+    }
+    .landing-mobile-nav {
+      display: block;
+    }
+  }
+
+  .landing-mobile-nav-list {
+    display: flex;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .landing_desktop-nav {
+    a:first-child {
+      @include reset-anchor($dark-color);
+    }
+    ul {
+      li {
+        a {
+          @include reset-anchor($dark-color);
+        }
+      }
+    }
+  }
+
+  .landing-mobile-nav-list {
+    background-color: $light-color;
+    box-shadow: 1px 2px 8px #dcd9d9;
+    ul {
+      li {
+        a {
+          @include reset-anchor($dark-color);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.logo {
+  font-family: $heading_font;
+  font-size: 1.7rem;
+  display: inline-block;
+  font-weight: 600;
+  font-family: "Balthazar";
+
+  span {
+    display: inline-block;
+    background-color: $blue;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    color: $light-color;
+  }
+}
+
+@media (max-width: 800px) {
+  .logo {
+    font-size: 1.3rem;
+  }
+}

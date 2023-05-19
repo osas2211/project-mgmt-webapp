@@ -1,0 +1,15 @@
+@mixin switch-mode($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+}
+
+@mixin reset-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+@mixin reset-anchor($color) {
+  color: $color;
+  text-decoration: none;
+}

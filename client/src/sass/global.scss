@@ -1,0 +1,34 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+@import "./partials/variables";
+@import "./partials/mixins";
+@import "./partials/root";
+@import "./partials/logo";
+@import "./partials/bottons";
+@import "./partials/nav";
+@import "./partials/landing";
+@import "./partials//auth";
+
+._404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 40rem;
+  }
+}
+
+@media (max-width: 600px) {
+  ._404 {
+    .logo {
+      margin-bottom: 5rem;
+    }
+    img {
+      width: 25rem;
+    }
+  }
+}

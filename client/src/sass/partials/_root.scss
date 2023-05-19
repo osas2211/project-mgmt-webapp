@@ -1,0 +1,28 @@
+:root {
+  @include switch-mode($dark-color, $light_color);
+  @include reset-anchor($light-color);
+  font-family: $text_font;
+  font-size: 16px;
+  scroll-behavior: smooth;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $heading_font;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    @include switch-mode($light-color, $dark_color);
+  }
+}
