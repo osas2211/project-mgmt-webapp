@@ -1,5 +1,5 @@
 import React from "react"
-import graphql from "../../assets/graphql.svg"
+import redux from "../../assets/redux.svg"
 import js from "../../assets/js.svg"
 import ts from "../../assets/ts.svg"
 import vite from "../../assets/vite.svg"
@@ -52,9 +52,9 @@ export const TechStack = () => {
         </div>
         <div className="tool">
           <div className="tool-img">
-            <img src={graphql} alt="" />
+            <img src={redux} alt="" />
           </div>
-          <p>Graphql/Apollo Client</p>
+          <p>Redux Toolkit</p>
         </div>
         <div className="tool">
           <div className="tool-img">

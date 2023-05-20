@@ -4,8 +4,6 @@ import { Link } from "react-router-dom"
 import authImg from "../assets/signup.svg"
 import { Form, Button, Input, Checkbox, notification } from "antd"
 import { FormInstance, useForm } from "antd/es/form/Form"
-import { useMutation } from "@apollo/client"
-import { SIGNUP_MUTATION } from "../graphql/mutations"
 import { openNotification } from "../utils/openNotification"
 import { CloseCircleFilled, MenuFoldOutlined } from "@ant-design/icons"
 import { LandingMobileNav } from "./LandingPage"
@@ -25,14 +23,10 @@ export default function () {
     setCollapsed(!collapsed)
   }
 
-  const [signUp, { data, loading, error }] = useMutation(SIGNUP_MUTATION)
-
   const createUserProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      await signUp({
-        variables: { firstName, lastName, email, userName, password },
-      })
+      // Sign Up Logic
       form.resetFields()
       openNotification("success", "Signed Up", "Sign Up Successful", api)
       setDisableForm(false)

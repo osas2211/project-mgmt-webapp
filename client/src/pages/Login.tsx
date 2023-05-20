@@ -20,9 +20,9 @@ export default function () {
   const [password, setPassword] = useState<string>("")
   const [disableForm, setDisableForm] = useState<boolean>(false)
   const [api, contextHolder] = notification.useNotification()
+  const account = new Account(client)
 
   const login = async (email: string, password: string) => {
-    const account = new Account(client)
     setLoading(true)
     try {
       await account.createEmailSession(email, password)

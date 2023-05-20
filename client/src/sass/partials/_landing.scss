@@ -144,13 +144,16 @@
         filter: drop-shadow(0 0 2em #3f5ae2aa);
       }
     }
-    .tool:nth-child(6),
-    .tool:nth-child(7) {
+    .tool:nth-child(6) {
       img {
         filter: drop-shadow(0 0 2em #fa6084aa);
       }
     }
-
+    .tool:nth-child(7) {
+      img {
+        filter: drop-shadow(0 0 2em #9c2ad1aa);
+      }
+    }
     .tool {
       display: flex;
       align-items: center;
