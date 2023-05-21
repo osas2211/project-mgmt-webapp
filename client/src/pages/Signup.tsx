@@ -5,8 +5,14 @@ import authImg from "../assets/signup.svg"
 import { Form, Button, Input, Checkbox, notification } from "antd"
 import { FormInstance, useForm } from "antd/es/form/Form"
 import { openNotification } from "../utils/openNotification"
-import { CloseCircleFilled, MenuFoldOutlined } from "@ant-design/icons"
+import {
+  CloseCircleFilled,
+  LoadingOutlined,
+  MenuFoldOutlined,
+} from "@ant-design/icons"
 import { LandingMobileNav } from "./LandingPage"
+import { useSignUpMutation } from "../redux/services/projectify"
+
 export default function () {
   const [firstName, setFirstName] = useState<string>("")
   const [lastName, setLastName] = useState<string>("")
@@ -22,11 +28,16 @@ export default function () {
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
   }
+  const [signup, { isLoading, error, data, isSuccess }] = useSignUpMutation()
 
   const createUserProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setDisableForm(true)
     try {
       // Sign Up Logic
+      const fullname = `${firstName} ${lastName}`
+      await signup({ fullname, email, password, username: userName })
+      isSuccess && console.log(data)
       form.resetFields()
       openNotification("success", "Signed Up", "Sign Up Successful", api)
       setDisableForm(false)
@@ -234,7 +245,11 @@ export default function () {
                   style={{ width: "100%" }}
                   disabled={disableForm}
                 >
-                  Sign up
+                  {isLoading ? (
+                    <LoadingOutlined color="#ffffff" style={{ fontSize: 20 }} />
+                  ) : (
+                    "Sign Up"
+                  )}
                 </Button>
               </Form.Item>
               <p style={{ textAlign: "center", marginTop: "1rem" }}>

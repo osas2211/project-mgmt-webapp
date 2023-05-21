@@ -1,4 +1,4 @@
-interface user {
+export interface User {
   $id: string
   $createdAt: string
   $updatedAt: string
@@ -10,5 +10,5 @@ interface user {
   phone: string
   emailVerification: string
   phoneVerification: string
-  prefs: string
+  prefs: object
 }
