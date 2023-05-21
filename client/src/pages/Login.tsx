@@ -176,7 +176,7 @@ export default function () {
                   type="primary"
                   htmlType="submit"
                   style={{ width: "100%" }}
-                  disabled={disableForm}
+                  disabled={!email ? true : !password ? true : disableForm}
                 >
                   {loading ? (
                     <LoadingOutlined color="#ffffff" style={{ fontSize: 20 }} />

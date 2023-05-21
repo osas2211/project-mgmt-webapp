@@ -31,6 +31,15 @@ export const mutations = {
       // Pick out data and prevent nested properties in a hook or selector
       transformResponse: (response: { data: User }, meta, arg) => response.data,
 
+      transformErrorResponse: (
+        response: {
+          status: number
+          data: { success: boolean; message: string }
+        },
+        meta,
+        arg
+      ) => response.data.message,
+
       // onQueryStarted is useful for optimistic updates
       // The 2nd parameter is the destructured `MutationLifecycleApi`
       // async onQueryStarted(

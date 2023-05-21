@@ -9,8 +9,9 @@ const users = new Users(client)
 
 // POST - CREATE A NEW USER
 export const createUser = async (req, res, next) => {
-  const { username, email, password, fullname } = req.body
   try {
+    const { username, email, password, fullname } = req.body
+
     const users = new Users(client)
     const user = await users.create(
       username,
@@ -19,9 +20,12 @@ export const createUser = async (req, res, next) => {
       password,
       fullname
     )
-    return res
-      .status(200)
-      .json({ success: true, message: "account creation was successful", user })
+    const { ...rest } = user
+    return res.status(200).json({
+      success: true,
+      message: "account creation was successful",
+      data: user,
+    })
   } catch (error) {
     return res.status(400).json({ success: false, message: error.message })
   }

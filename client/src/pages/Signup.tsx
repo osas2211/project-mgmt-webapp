@@ -12,6 +12,7 @@ import {
 } from "@ant-design/icons"
 import { LandingMobileNav } from "./LandingPage"
 import { useSignUpMutation } from "../redux/services/projectify"
+import { useNavigate } from "react-router-dom"
 
 export default function () {
   const [firstName, setFirstName] = useState<string>("")
@@ -23,12 +24,14 @@ export default function () {
   const [disableForm, setDisableForm] = useState<boolean>(false)
   const [api, contextHolder] = notification.useNotification()
   const [form] = useForm<FormInstance>()
+  const navigate = useNavigate()
 
   const [collapsed, setCollapsed] = useState<boolean>(false)
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
   }
-  const [signup, { isLoading, error, data, isSuccess }] = useSignUpMutation()
+  const [signup, { isLoading, error, data, isSuccess, isError }] =
+    useSignUpMutation()
 
   const createUserProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -36,15 +39,15 @@ export default function () {
     try {
       // Sign Up Logic
       const fullname = `${firstName} ${lastName}`
-      await signup({ fullname, email, password, username: userName })
-      isSuccess && console.log(data)
+      await signup({ fullname, email, password, username: userName }).unwrap()
       form.resetFields()
       openNotification("success", "Signed Up", "Sign Up Successful", api)
+      setTimeout(() => navigate("/profile"), 1500)
       setDisableForm(false)
     } catch (error: any) {
       setDisableForm(false)
-      console.log(error.message)
-      openNotification("error", "Sign Up Failed", error.message, api)
+      console.log(error)
+      openNotification("error", "Sign Up Failed", error, api)
     }
   }
   return (
@@ -243,7 +246,19 @@ export default function () {
                   type="primary"
                   htmlType="submit"
                   style={{ width: "100%" }}
-                  disabled={disableForm}
+                  disabled={
+                    !email
+                      ? true
+                      : !password
+                      ? true
+                      : !confirmPswd
+                      ? true
+                      : !firstName
+                      ? true
+                      : !lastName
+                      ? true
+                      : disableForm
+                  }
                 >
                   {isLoading ? (
                     <LoadingOutlined color="#ffffff" style={{ fontSize: 20 }} />
