@@ -19,6 +19,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
   }
 }
@@ -46,6 +47,20 @@
   }
   p {
     margin-top: -0.1rem;
+  }
+}
+
+.notification-bell {
+  position: relative;
+  .notification-numbers {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.4rem;
+    font-size: 0.7rem;
+    background-color: $blue;
+    color: #fff;
+    padding: 0.1rem 0.3rem;
+    border-radius: 50%;
   }
 }
 
