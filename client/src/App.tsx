@@ -12,6 +12,7 @@ function App() {
   const LandingPage = React.lazy(() => import("./pages/LandingPage"))
   const Login = React.lazy(() => import("./pages/Login"))
   const Signup = React.lazy(() => import("./pages/Signup"))
+  const Main = React.lazy(() => import("./components/CentralPage"))
   return (
     <div className="app">
       <Provider store={store}>
@@ -50,6 +51,17 @@ function App() {
               />
               <Route path="reset-password" element={<ResetPassword />} />
               <Route path="profile" element={<UserProfile />} />
+              <Route
+                path="main"
+                element={
+                  <Suspense fallback={<div>loading....</div>}>
+                    <Main />
+                  </Suspense>
+                }
+              >
+                {" "}
+              </Route>
+
               <Route path="*" element={<_404 />} />
             </Routes>
           </Router>

@@ -21,6 +21,7 @@ export default function () {
   const [disableForm, setDisableForm] = useState<boolean>(false)
   const [api, contextHolder] = notification.useNotification()
   const account = new Account(client)
+  // account.get().then((obj) => console.log(obj))
 
   const login = async (email: string, password: string) => {
     setLoading(true)
