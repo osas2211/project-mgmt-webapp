@@ -15,7 +15,7 @@
       width: 2.5rem;
       height: 2.5rem;
       border-radius: 100%;
-      background-color: aliceblue;
+      background-color: rgb(42, 43, 44);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -61,11 +61,17 @@
     color: #fff;
     padding: 0.1rem 0.3rem;
     border-radius: 50%;
+    text-align: center;
   }
 }
 
 @media (prefers-color-scheme: light) {
   .main-header {
     background-color: #fff;
+    ul {
+      li {
+        background-color: rgb(241, 245, 248);
+      }
+    }
   }
 }

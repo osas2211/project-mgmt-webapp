@@ -7,6 +7,7 @@ import ResetPassword from "./pages/ResetPassword."
 import { UserProfile } from "./pages/UserProfile"
 import { store } from "./redux/store"
 import { Provider } from "react-redux"
+import CentralPage from "./components/CentralPage"
 
 function App() {
   const LandingPage = React.lazy(() => import("./pages/LandingPage"))
@@ -50,16 +51,15 @@ function App() {
                 }
               />
               <Route path="reset-password" element={<ResetPassword />} />
-              <Route path="profile" element={<UserProfile />} />
               <Route
-                path="main"
+                path="/main"
                 element={
                   <Suspense fallback={<div>loading....</div>}>
                     <Main />
                   </Suspense>
                 }
               >
-                {" "}
+                <Route path="profile" element={<UserProfile />} />
               </Route>
 
               <Route path="*" element={<_404 />} />

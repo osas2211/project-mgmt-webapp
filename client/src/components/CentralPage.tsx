@@ -6,6 +6,9 @@ export default function CentralPage() {
   return (
     <div>
       <Header />
+      <div>
+        <Outlet />
+      </div>
     </div>
   )
 }
