@@ -42,7 +42,7 @@ export default function () {
       await signup({ fullname, email, password, username: userName }).unwrap()
       form.resetFields()
       openNotification("success", "Signed Up", "Sign Up Successful", api)
-      setTimeout(() => navigate("/profile"), 1500)
+      setTimeout(() => navigate("/main/profile"), 500)
       setDisableForm(false)
     } catch (error: any) {
       setDisableForm(false)

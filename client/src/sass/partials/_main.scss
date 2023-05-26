@@ -3,9 +3,11 @@
 }
 
 .all-content > div:nth-child(2) {
-  padding: 1rem;
+  padding: 1.5rem;
   border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
   width: 100%;
+  margin-right: 1.5rem;
 }
 
 @media (prefers-color-scheme: light) {
@@ -14,5 +16,6 @@
   }
   .all-content > div:nth-child(2) {
     background-color: #f6f6f6;
+    color: #2e2e2e;
   }
 }

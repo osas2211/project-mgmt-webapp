@@ -1,0 +1,23 @@
+.profile {
+  font-family: "Inter";
+  padding: 4rem;
+  h2 {
+    font-family: "Inter";
+  }
+}
+.profile-main {
+  width: 100%;
+  min-height: 50rem;
+  border-radius: 10px;
+  margin-top: 1.5rem;
+  border: 1px solid #e8e8e8;
+  box-shadow: 2px 4px 16px #8787872c;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: light) {
+  .profile-main {
+    background-color: #fff;
+  }
+}
