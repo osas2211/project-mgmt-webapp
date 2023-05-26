@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Logo } from "../components/Logo"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import authImg from "../assets/auth.svg"
 import { Form, Button, Input, Checkbox, notification } from "antd"
 import { LoadingOutlined } from "@ant-design/icons"
@@ -22,12 +22,14 @@ export default function () {
   const [api, contextHolder] = notification.useNotification()
   const account = new Account(client)
   // account.get().then((obj) => console.log(obj))
+  const navigate = useNavigate()
 
   const login = async (email: string, password: string) => {
     setLoading(true)
     try {
       await account.createEmailSession(email, password)
       setLoading(false)
+      setTimeout(() => navigate("/main"), 700)
     } catch (error: any) {
       setLoading(false)
       throw Error(error.message)

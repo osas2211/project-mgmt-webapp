@@ -1,14 +1,19 @@
-import React from "react"
+import React, { ReactNode } from "react"
 import userImg from "../assets/user.jpg"
 import { CaretDownFilled, UserOutlined } from "@ant-design/icons"
 import { Link } from "react-router-dom"
 import { Dropdown } from "antd"
 import { Typography } from "antd"
+import { Logout } from "./Logout"
 
 const { Text } = Typography
 
 export const UserDropDown = () => {
-  const items = [
+  type item = {
+    key: number
+    label: ReactNode
+  }
+  const items: item[] = [
     {
       key: 1,
       label: (
@@ -19,6 +24,10 @@ export const UserDropDown = () => {
           </Link>
         </div>
       ),
+    },
+    {
+      key: 2,
+      label: <Logout />,
     },
   ]
   return (
