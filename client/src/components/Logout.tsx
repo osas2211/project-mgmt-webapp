@@ -20,6 +20,7 @@ export const Logout = () => {
           window.location.reload()
         } catch (error) {}
       }}
+      style={{ cursor: "pointer" }}
     >
       <Text type="danger">
         <LogoutOutlined style={{ fontSize: "1rem", paddingRight: "0.5rem" }} />

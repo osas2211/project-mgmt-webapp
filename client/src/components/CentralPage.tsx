@@ -3,6 +3,7 @@ import { Outlet, useNavigate, useNavigation } from "react-router-dom"
 import { Account, Client } from "appwrite"
 import { useEffect, useState } from "react"
 import { Spin } from "antd"
+import { Navigator } from "./Navigator"
 const client = new Client()
 client
   .setEndpoint("https://cloud.appwrite.io/v1")
@@ -34,9 +35,10 @@ export default function CentralPage() {
       {!loading ? (
         <>
           <Header />
-          <div>
+          <main className="all-content">
+            <Navigator />
             <Outlet />
-          </div>
+          </main>
         </>
       ) : (
         <div

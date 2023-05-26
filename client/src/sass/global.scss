@@ -12,6 +12,7 @@
 @import "./partials/landing";
 @import "./partials/auth";
 @import "./partials/header";
+@import "./partials/main";
 
 ._404 {
   display: flex;
@@ -21,10 +22,6 @@
   img {
     width: 40rem;
   }
-}
-
-.material-symbols-sharp {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
 @media (max-width: 600px) {

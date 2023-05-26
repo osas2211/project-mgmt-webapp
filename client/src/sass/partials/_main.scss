@@ -1,0 +1,18 @@
+.all-content {
+  display: flex;
+}
+
+.all-content > div:nth-child(2) {
+  padding: 1rem;
+  border-top-left-radius: 1rem;
+  width: 100%;
+}
+
+@media (prefers-color-scheme: light) {
+  .all-content {
+    background-color: #fff;
+  }
+  .all-content > div:nth-child(2) {
+    background-color: #f6f6f6;
+  }
+}
