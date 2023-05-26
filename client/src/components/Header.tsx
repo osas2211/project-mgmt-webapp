@@ -4,9 +4,11 @@ import { UserDropDown } from "./UserDropDown"
 import { BellFilled } from "@ant-design/icons"
 import DarkModeIcon from "@mui/icons-material/DarkMode"
 import { Icon } from "@mui/material"
-import { Navigator } from "./Navigator"
 
-export const Header = () => {
+export const Header: React.FC<{ name: string; id: string }> = ({
+  name,
+  id,
+}) => {
   return (
     <div>
       <header className="main-header">
@@ -19,7 +21,7 @@ export const Header = () => {
             <div className="notification-numbers">12</div>
             <BellFilled />
           </li>
-          <UserDropDown />
+          <UserDropDown name={name} id={id} />
         </ul>
       </header>
     </div>

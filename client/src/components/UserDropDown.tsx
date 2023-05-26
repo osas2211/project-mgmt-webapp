@@ -8,7 +8,10 @@ import { Logout } from "./Logout"
 
 const { Text } = Typography
 
-export const UserDropDown = () => {
+export const UserDropDown: React.FC<{ name: string; id: string }> = ({
+  name,
+  id,
+}) => {
   type item = {
     key: number
     label: ReactNode
@@ -36,10 +39,10 @@ export const UserDropDown = () => {
         <img src={userImg} alt="user" />
         <div style={{ marginLeft: "0.5rem" }}>
           <h4>
-            Osaretin Frank <CaretDownFilled style={{ fontSize: "0.8rem" }} />
+            {name} <CaretDownFilled style={{ fontSize: "0.8rem" }} />
           </h4>
           <p>
-            <small>@osaretinfrank</small>
+            <small>@{id}</small>
           </p>
         </div>
       </div>

@@ -8,7 +8,7 @@ const { Text } = Typography
 const client = new Client()
 client
   .setEndpoint("https://cloud.appwrite.io/v1")
-  .setProject("6463da5b176aab1a02e1")
+  .setProject(import.meta.env.VITE_PROJECT_ID)
 const account = new Account(client)
 
 export const Logout = () => {

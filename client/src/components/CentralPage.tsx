@@ -7,7 +7,7 @@ import { Navigator } from "./Navigator"
 const client = new Client()
 client
   .setEndpoint("https://cloud.appwrite.io/v1")
-  .setProject("6463da5b176aab1a02e1")
+  .setProject(import.meta.env.VITE_PROJECT_ID)
 const account = new Account(client)
 
 export default function CentralPage() {
@@ -34,7 +34,7 @@ export default function CentralPage() {
     <div>
       {!loading ? (
         <>
-          <Header />
+          <Header name={isUser.name as string} id={isUser.$id as string} />
           <main className="all-content">
             <Navigator />
             <Outlet />

@@ -1,6 +1,13 @@
 import React from "react"
 import { Link, useHref } from "react-router-dom"
-import { Dashboard, Task, FolderCopy, VideoCall } from "@mui/icons-material"
+import {
+  Dashboard,
+  FolderCopy,
+  VideoCall,
+  Group,
+  TaskAltSharp,
+  GroupAdd,
+} from "@mui/icons-material"
 import { Icon } from "@mui/material"
 import { Button, Progress } from "antd"
 import { Logout } from "./Logout"
@@ -12,30 +19,68 @@ export const Navigator = () => {
         <li>
           <Icon
             component={Dashboard}
-            style={{ fontSize: "2.2rem", paddingRight: "1rem" }}
+            style={{
+              fontSize: "1.7rem",
+              paddingRight: "1rem",
+              color: "#9BC53D",
+            }}
           />{" "}
           <Link to={"dashboard"}>Dashboard</Link>
         </li>
         <li>
           <Icon
             component={FolderCopy}
-            style={{ fontSize: "2.2rem", paddingRight: "1rem" }}
+            style={{
+              fontSize: "1.7rem",
+              paddingRight: "1rem",
+              color: "#294D4A",
+            }}
           />{" "}
           <Link to={"projects"}>Projects</Link>
         </li>
         <li>
           <Icon
-            component={Task}
-            style={{ fontSize: "2.2rem", paddingRight: "1rem" }}
+            component={TaskAltSharp}
+            style={{
+              fontSize: "1.7rem",
+              paddingRight: "1rem",
+              color: "#FF595E",
+            }}
           />{" "}
           <Link to={"tasks"}>Tasks</Link>
         </li>
         <li>
           <Icon
+            component={Group}
+            style={{
+              fontSize: "1.7rem",
+              paddingRight: "1rem",
+              color: "#60B2E5",
+            }}
+          />{" "}
+          <Link to={"meetings"}>Teams</Link>
+        </li>
+        <li>
+          <Icon
             component={VideoCall}
-            style={{ fontSize: "2.2rem", paddingRight: "1rem" }}
+            style={{
+              fontSize: "1.7rem",
+              paddingRight: "1rem",
+              color: "#FEE440",
+            }}
           />{" "}
           <Link to={"meetings"}>Meetings</Link>
+        </li>
+        <li>
+          <Icon
+            component={GroupAdd}
+            style={{
+              fontSize: "1.7rem",
+              paddingRight: "1rem",
+              color: "#FFAFCC",
+            }}
+          />{" "}
+          <Link to={"invitations"}>Invitations</Link>
         </li>
       </ul>
 

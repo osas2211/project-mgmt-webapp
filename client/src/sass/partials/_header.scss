@@ -73,19 +73,19 @@
     list-style: none;
     width: 85%;
     margin: auto;
-    padding-top: 1rem;
+    padding-top: 1.5rem;
   }
   li {
     display: flex;
     color: #dbd7d7;
     align-items: center;
     padding: 0.4rem 1.2rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
     // justify-content: space-between;
     border-radius: 5px;
     &:hover,
     &:hover a {
-      background-color: $blue;
+      background: $blue;
       color: #fff;
     }
     cursor: pointer;
