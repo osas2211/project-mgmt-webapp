@@ -21,6 +21,7 @@ export const ChangePassword = () => {
             size="large"
             prefix={<LockOutlined />}
             style={{ padding: "0.7rem" }}
+            autoFocus={true}
           />
         </Col>
         <Col span={12}>

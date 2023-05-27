@@ -4,6 +4,7 @@ import { UserDropDown } from "./UserDropDown"
 import { BellFilled } from "@ant-design/icons"
 import DarkModeIcon from "@mui/icons-material/DarkMode"
 import { Icon } from "@mui/material"
+import { Link } from "react-router-dom"
 
 export const Header: React.FC<{ name: string; id: string }> = ({
   name,
@@ -12,7 +13,9 @@ export const Header: React.FC<{ name: string; id: string }> = ({
   return (
     <div>
       <header className="main-header">
-        <Logo />
+        <Link to="/main/dashboard" style={{ color: "inherit" }}>
+          <Logo />
+        </Link>
         <ul>
           <li>
             <Icon component={DarkModeIcon} />

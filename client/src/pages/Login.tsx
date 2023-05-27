@@ -29,7 +29,7 @@ export default function () {
     try {
       await account.createEmailSession(email, password)
       setLoading(false)
-      setTimeout(() => navigate("/main/profile"), 700)
+      setTimeout(() => navigate("/main/dashboard"), 700)
     } catch (error: any) {
       setLoading(false)
       throw Error(error.message)

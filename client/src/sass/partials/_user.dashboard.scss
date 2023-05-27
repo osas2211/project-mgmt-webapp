@@ -1,0 +1,72 @@
+.user-dashboard {
+  background-color: #232222 !important;
+  &-top {
+    display: flex;
+    justify-content: space-between;
+    h3 {
+      span {
+        display: inline-block;
+        height: 0.5rem;
+        width: 0.5rem;
+        background-color: $blue;
+        border-radius: 50%;
+      }
+    }
+  }
+  .user-tasks {
+    flex-basis: 50%;
+    position: relative;
+    .radio {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+    }
+    .user-tasks-summary {
+      padding: 1.5rem 0;
+      &1,
+      &2,
+      &3,
+      &4 {
+        display: flex;
+        padding: 1rem 0rem;
+        background-color: $dark_color;
+        border-radius: 8px;
+        box-shadow: 1px 4px 8px #58585839;
+        margin-left: 1rem;
+        h4 {
+          font-weight: bolder;
+          font-size: 1rem;
+        }
+        h3 {
+          font-size: 1.4rem;
+          font-family: "Inter";
+        }
+      }
+    }
+  }
+  .user-projects {
+    h3 {
+      span {
+        background-color: #ffca3a;
+      }
+    }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .user-dashboard {
+    background-color: #fbfbfb !important;
+    .user-tasks {
+      .user-tasks-summary {
+        &1,
+        &2,
+        &3,
+        &4 {
+          background-color: #fff;
+          box-shadow: 1px 4px 8px #77777739;
+        }
+      }
+    }
+  }
+}
