@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react"
-import userImg from "../assets/user.jpg"
+import userImg from "../assets/user.png"
 import { CaretDownFilled, UserOutlined } from "@ant-design/icons"
 import { Link } from "react-router-dom"
 import { Dropdown } from "antd"
