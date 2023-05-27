@@ -1,3 +1,4 @@
+import { ProjectsSummary } from "../components/ProjectsSummary"
 import { TasksSummary } from "../components/TasksSummary"
 
 export const Dashboard = () => {
@@ -5,11 +6,7 @@ export const Dashboard = () => {
     <div className="user-dashboard">
       <div className="user-dashboard-top">
         <TasksSummary />
-        <div className="user-projects">
-          <h3>
-            <span></span> Projects Progress
-          </h3>
-        </div>
+        <ProjectsSummary />
       </div>
     </div>
   )
