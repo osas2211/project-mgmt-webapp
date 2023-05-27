@@ -1,14 +1,10 @@
 import React from "react"
 import { Breadcrumb } from "antd"
 import { Link } from "react-router-dom"
-import {
-  AndroidOutlined,
-  SecurityScanOutlined,
-  EditFilled,
-} from "@ant-design/icons"
-import { Password } from "@mui/icons-material"
+import { SecurityScanOutlined, EditFilled } from "@ant-design/icons"
 import { Tabs } from "antd"
 import { EditProfile } from "../components/EditProfile"
+import { ChangePassword } from "../components/ChangePassword"
 
 export const UserProfile = () => {
   const tabItems = [
@@ -30,7 +26,7 @@ export const UserProfile = () => {
         </span>
       ),
       key: "2",
-      children: <p>Tab 2</p>,
+      children: <ChangePassword />,
     },
   ]
   return (

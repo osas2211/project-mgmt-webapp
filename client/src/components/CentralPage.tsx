@@ -20,7 +20,6 @@ export default function CentralPage() {
       try {
         const user = await account.get()
         if (user) setLoading(false)
-        console.log(user)
         setIsUser(user)
         if (!user) navigate("/login")
       } catch (error) {
