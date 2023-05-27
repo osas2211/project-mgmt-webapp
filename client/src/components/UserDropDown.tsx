@@ -22,7 +22,7 @@ export const UserDropDown: React.FC<{ name: string; id: string }> = ({
       label: (
         <div>
           <UserOutlined style={{ fontSize: "1rem", paddingRight: "0.5rem" }} />
-          <Link to={"profile"}>
+          <Link to={"/main/profile"}>
             <Text>My Account</Text>
           </Link>
         </div>

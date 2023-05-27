@@ -8,6 +8,7 @@ import { UserProfile } from "./pages/UserProfile"
 import { store } from "./redux/store"
 import { Provider } from "react-redux"
 import CentralPage from "./components/CentralPage"
+import { Dashboard } from "./pages/Dashboard"
 
 function App() {
   const LandingPage = React.lazy(() => import("./pages/LandingPage"))
@@ -60,6 +61,8 @@ function App() {
                 }
               >
                 <Route path="profile" element={<UserProfile />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="*" element={<_404 />} />
               </Route>
 
               <Route path="*" element={<_404 />} />

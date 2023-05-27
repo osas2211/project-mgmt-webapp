@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, useHref } from "react-router-dom"
+import { Link, useHref, useLocation } from "react-router-dom"
 import {
   Dashboard,
   FolderCopy,
@@ -13,75 +13,88 @@ import { Button, Progress } from "antd"
 import { Logout } from "./Logout"
 
 export const Navigator = () => {
+  const { pathname } = useLocation()
   return (
     <aside className="nav-bar">
       <ul>
-        <li>
-          <Icon
-            component={Dashboard}
-            style={{
-              fontSize: "1.7rem",
-              paddingRight: "1rem",
-              color: "#9BC53D",
-            }}
-          />{" "}
-          <Link to={"dashboard"}>Dashboard</Link>
-        </li>
-        <li>
-          <Icon
-            component={FolderCopy}
-            style={{
-              fontSize: "1.7rem",
-              paddingRight: "1rem",
-              color: "#294D4A",
-            }}
-          />{" "}
-          <Link to={"projects"}>Projects</Link>
-        </li>
-        <li>
-          <Icon
-            component={TaskAltSharp}
-            style={{
-              fontSize: "1.7rem",
-              paddingRight: "1rem",
-              color: "#FF595E",
-            }}
-          />{" "}
-          <Link to={"tasks"}>Tasks</Link>
-        </li>
-        <li>
-          <Icon
-            component={Group}
-            style={{
-              fontSize: "1.7rem",
-              paddingRight: "1rem",
-              color: "#60B2E5",
-            }}
-          />{" "}
-          <Link to={"meetings"}>Teams</Link>
-        </li>
-        <li>
-          <Icon
-            component={VideoCall}
-            style={{
-              fontSize: "1.7rem",
-              paddingRight: "1rem",
-              color: "#FEE440",
-            }}
-          />{" "}
-          <Link to={"meetings"}>Meetings</Link>
-        </li>
-        <li>
-          <Icon
-            component={GroupAdd}
-            style={{
-              fontSize: "1.7rem",
-              paddingRight: "1rem",
-              color: "#FFAFCC",
-            }}
-          />{" "}
-          <Link to={"invitations"}>Invitations</Link>
-        </li>
+        <Link to={"dashboard"}>
+          <li className={pathname === "/main/dashboard" ? "active-nav" : ""}>
+            <Icon
+              component={Dashboard}
+              style={{
+                fontSize: "1.7rem",
+                paddingRight: "1rem",
+                color: "#9BC53D",
+              }}
+            />{" "}
+            Dashboard
+          </li>
+        </Link>
+        <Link to={"projects"}>
+          <li className={pathname === "/main/projects" ? "active-nav" : ""}>
+            <Icon
+              component={FolderCopy}
+              style={{
+                fontSize: "1.7rem",
+                paddingRight: "1rem",
+                color: "#294D4A",
+              }}
+            />{" "}
+            Projects
+          </li>
+        </Link>
+        <Link to={"tasks"}>
+          <li className={pathname === "/main/tasks" ? "active-nav" : ""}>
+            <Icon
+              component={TaskAltSharp}
+              style={{
+                fontSize: "1.7rem",
+                paddingRight: "1rem",
+                color: "#FF595E",
+              }}
+            />{" "}
+            Tasks
+          </li>
+        </Link>
+        <Link to={"teams"}>
+          <li className={pathname === "/main/teams" ? "active-nav" : ""}>
+            <Icon
+              component={Group}
+              style={{
+                fontSize: "1.7rem",
+                paddingRight: "1rem",
+                color: "#60B2E5",
+              }}
+            />{" "}
+            Teams
+          </li>
+        </Link>
+        <Link to={"meetings"}>
+          <li className={pathname === "/main/meetings" ? "active-nav" : ""}>
+            <Icon
+              component={VideoCall}
+              style={{
+                fontSize: "1.7rem",
+                paddingRight: "1rem",
+                color: "#FEE440",
+              }}
+            />{" "}
+            Meetings
+          </li>
+        </Link>
+        <Link to={"invitations"}>
+          <li className={pathname === "/main/invitations" ? "active-nav" : ""}>
+            <Icon
+              component={GroupAdd}
+              style={{
+                fontSize: "1.7rem",
+                paddingRight: "1rem",
+                color: "#FFAFCC",
+              }}
+            />{" "}
+            Invitations
+          </li>
+        </Link>
       </ul>
 
       <div className="nav-down">
