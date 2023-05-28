@@ -15,6 +15,7 @@ function App() {
   const Login = React.lazy(() => import("./pages/Login"))
   const Signup = React.lazy(() => import("./pages/Signup"))
   const Main = React.lazy(() => import("./components/CentralPage"))
+
   return (
     <div className="app">
       <Provider store={store}>

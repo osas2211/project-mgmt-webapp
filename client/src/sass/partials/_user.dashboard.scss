@@ -46,7 +46,6 @@
     }
   }
   .user-projects {
-    flex-basis: 50%;
     h3 {
       span {
         background-color: #ffca3a;
@@ -96,6 +95,30 @@
       }
     }
   }
+  .upcoming-meetings {
+    h3 {
+      span {
+        background-color: #9bc53d;
+      }
+    }
+    .upcomings {
+      background-color: $dark_color;
+      border-radius: 8px;
+      box-shadow: 1px 4px 8px #58585839;
+      padding: 1.5rem;
+      margin: 1.5rem 1rem;
+      h3 {
+        // font-family: "Inter";
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+      h4 {
+        font-size: 1rem;
+        font-family: "Laila";
+        font-weight: 500;
+      }
+    }
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -114,6 +137,12 @@
     }
     .user-projects {
       .user-projects-summary {
+        background-color: #fff;
+        box-shadow: 1px 4px 8px #77777739;
+      }
+    }
+    .upcoming-meetings {
+      .upcomings {
         background-color: #fff;
         box-shadow: 1px 4px 8px #77777739;
       }

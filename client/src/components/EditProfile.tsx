@@ -81,7 +81,11 @@ export const EditProfile = () => {
             <Input placeholder="Discord" size="large" style={{ padding: 12 }} />
           </Col>
           <Col span={8}>
-            <Input placeholder="Telgram" size="large" style={{ padding: 12 }} />
+            <Input
+              placeholder="Telegram"
+              size="large"
+              style={{ padding: 12 }}
+            />
           </Col>
         </Row>
       </div>

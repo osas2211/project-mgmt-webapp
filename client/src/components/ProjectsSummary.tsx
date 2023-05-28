@@ -3,8 +3,11 @@ import CallMadeIcon from "@mui/icons-material/CallMade"
 import { Icon } from "@mui/material"
 import { Link } from "react-router-dom"
 import projectImg from "../assets/project.jpg"
-import projectImg3 from "../assets/bird.svg"
 import projectImg2 from "../assets/user.png"
+import projectImg3 from "../assets/appwrite.svg"
+import projectImg4 from "../assets/work_.svg"
+import projectImg5 from "../assets/target.svg"
+import user from "../assets/user.jpg"
 import { Progress } from "antd"
 
 export const ProjectsSummary = () => {
@@ -44,24 +47,25 @@ export const ProjectsSummary = () => {
 
         <div className="current-projects">
           <CurrentProject
-            progress={75}
-            projectImg={projectImg}
-            title="The AI Project"
+            progress={35}
+            projectImg={projectImg3}
+            title="Appwrite X Hashnode Hackathon"
           />
           <CurrentProject
             progress={95}
-            projectImg={projectImg3}
-            title="Create a Blog app"
+            projectImg={projectImg4}
+            title="Final Year Project"
           />
-          <CurrentProject
-            progress={35}
-            projectImg={projectImg}
-            title="Appwrite Hackathon"
-          />
+
           <CurrentProject
             progress={15}
-            projectImg={projectImg3}
+            projectImg={projectImg5}
             title="Video Conferencing App"
+          />
+          <CurrentProject
+            progress={75}
+            projectImg={projectImg}
+            title="The AI Project"
           />
         </div>
       </div>
@@ -85,14 +89,14 @@ export const CurrentProject: React.FC<{
           <h3>{title}</h3>
           <Progress
             percent={progress as number}
-            strokeColor={{ "0%": "#108ee9", "100%": "#87d068" }}
+            strokeColor={{ "10%": "#1c93e1", "100%": "#87d068" }}
             size={"small"}
           />
         </div>
         <div className="current-project-icons">
-          <img src={projectImg} alt="A Contributor" />
           <img src={projectImg2} alt="A Contributor" />
-          <img src={projectImg3} alt="A Contributor" />
+          <img src={user} alt="A Contributor" />
+          <img src={projectImg2} alt="A Contributor" />
         </div>
       </div>
     </Link>

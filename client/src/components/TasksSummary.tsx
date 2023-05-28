@@ -8,7 +8,55 @@ import {
 } from "@mui/icons-material"
 import { Col, Row } from "antd"
 import { Icon } from "@mui/material"
+import { Column, Liquid } from "@ant-design/plots"
+
+const data = [
+  {
+    type: "Total Tasks",
+    value: 34,
+  },
+  {
+    type: "Completed Tasks",
+    value: 12,
+  },
+  {
+    type: "Pending Tasks",
+    value: 8,
+  },
+  {
+    type: "Uncompleted Tasks",
+    value: 14,
+  },
+]
+
 export const TasksSummary = () => {
+  const config = {
+    data,
+    xField: "type",
+    yField: "value",
+    label: {
+      position: "middle",
+      // 'top', 'bottom', 'middle',
+      style: {
+        fill: "#FFFFFF",
+        opacity: 0.6,
+      },
+    },
+    xAxis: {
+      label: {
+        autoHide: true,
+        autoRotate: false,
+      },
+    },
+    meta: {
+      type: {
+        alias: "Tasks",
+      },
+      value: {
+        alias: "Value",
+      },
+    },
+  }
   return (
     <div className="user-tasks">
       <h3>
@@ -160,6 +208,13 @@ export const TasksSummary = () => {
           />
         </Col>
       </Row>
+
+      <div style={{ marginTop: "4rem" }}>
+        <h3 style={{ marginBottom: "2rem" }}>
+          <span></span> Overall Performance from all projects
+        </h3>
+        <Column {...(config as any)} />
+      </div>
     </div>
   )
 }
