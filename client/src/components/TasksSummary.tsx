@@ -74,7 +74,7 @@ export const TasksSummary = () => {
           </span>
           <div>
             <h4>Completed Tasks</h4>
-            <h3>34</h3>
+            <h3>12</h3>
           </div>
           <Icon
             component={RadioButtonCheckedOutlined}
@@ -110,7 +110,7 @@ export const TasksSummary = () => {
           </span>
           <div>
             <h4>Pending Tasks</h4>
-            <h3>34</h3>
+            <h3>8</h3>
           </div>
           <Icon
             component={RadioButtonCheckedOutlined}
@@ -146,7 +146,7 @@ export const TasksSummary = () => {
           </span>
           <div>
             <h4>Uncompleted Tasks</h4>
-            <h3>34</h3>
+            <h3>14</h3>
           </div>
           <Icon
             component={RadioButtonCheckedOutlined}

@@ -43,10 +43,26 @@ export const ProjectsSummary = () => {
         </div>
 
         <div className="current-projects">
-          <CurrentProject progress={75} projectImg={projectImg} />
-          <CurrentProject progress={95} projectImg={projectImg3} />
-          <CurrentProject progress={35} projectImg={projectImg} />
-          <CurrentProject progress={15} projectImg={projectImg3} />
+          <CurrentProject
+            progress={75}
+            projectImg={projectImg}
+            title="The AI Project"
+          />
+          <CurrentProject
+            progress={95}
+            projectImg={projectImg3}
+            title="Create a Blog app"
+          />
+          <CurrentProject
+            progress={35}
+            projectImg={projectImg}
+            title="Appwrite Hackathon"
+          />
+          <CurrentProject
+            progress={15}
+            projectImg={projectImg3}
+            title="Video Conferencing App"
+          />
         </div>
       </div>
     </div>
@@ -56,7 +72,8 @@ export const ProjectsSummary = () => {
 export const CurrentProject: React.FC<{
   projectImg: string
   progress: string | number
-}> = ({ projectImg, progress }) => {
+  title: string
+}> = ({ projectImg, progress, title }) => {
   return (
     <Link
       to={"/main/project"}
@@ -65,10 +82,11 @@ export const CurrentProject: React.FC<{
       <div className="current-project">
         <img src={projectImg} alt="Project overview" />
         <div className="current-project-progress">
-          <h3>The AI Project</h3>
+          <h3>{title}</h3>
           <Progress
             percent={progress as number}
             strokeColor={{ "0%": "#108ee9", "100%": "#87d068" }}
+            size={"small"}
           />
         </div>
         <div className="current-project-icons">
