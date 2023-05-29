@@ -9,7 +9,8 @@ export const MeetingNotification: React.FC<{
   date: string
   time: string
   color: string | undefined
-}> = ({ title, date, time, color }) => {
+  title_style?: React.CSSProperties
+}> = ({ title, date, time, color, title_style }) => {
   return (
     <div style={{ display: "flex", marginBottom: "1rem", width: "100%" }}>
       <Icon
@@ -17,7 +18,7 @@ export const MeetingNotification: React.FC<{
         style={{ color, fontSize: "2rem", marginRight: "1rem" }}
       />
       <div>
-        <h4>{title}</h4>
+        <h4 style={{ ...title_style }}>{title}</h4>
         <p>
           <small>
             {date} - {time}

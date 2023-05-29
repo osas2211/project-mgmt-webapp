@@ -11,6 +11,7 @@ import CentralPage from "./components/CentralPage"
 import { Dashboard } from "./pages/Dashboard"
 import { Projects } from "./pages/Projects"
 import { Invitations } from "./pages/Invitations"
+import { Meetings } from "./pages/Meetings"
 
 function App() {
   const LandingPage = React.lazy(() => import("./pages/LandingPage"))
@@ -67,6 +68,7 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="projects" element={<Projects />} />
                 <Route path="invitations" element={<Invitations />} />
+                <Route path="meetings" element={<Meetings />} />
                 <Route path="*" element={<_404 />} />
               </Route>
 
