@@ -53,7 +53,7 @@ export const Navigator = () => {
                 color: "#FF595E",
               }}
             />{" "}
-            Tasks
+            Workload
           </li>
         </Link>
         <Link to={"teams"}>

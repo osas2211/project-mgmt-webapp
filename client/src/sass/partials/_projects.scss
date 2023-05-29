@@ -1,0 +1,39 @@
+.projects {
+  margin-top: 1.5rem;
+  h2 {
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    span {
+      background-color: $yellow;
+      height: 0.4rem;
+      width: 0.4rem;
+      border-radius: 100%;
+      display: inline-block;
+      margin-bottom: 0.2rem;
+    }
+  }
+}
+
+.project-card {
+  margin-bottom: 1rem;
+  span:nth-child(1),
+  span:nth-child(2) {
+    display: inline-block;
+    padding: 0.3rem 0.5rem;
+    border-radius: 5px;
+    margin: 0.8rem 0.2rem 0.8rem 0;
+  }
+  span:nth-child(1) {
+    color: #ff595e;
+    background-color: #ff595f16;
+  }
+  span:nth-child(2) {
+    color: #9bc53d;
+    background-color: #9ac53d26;
+  }
+  p {
+    opacity: 0.7;
+  }
+}
