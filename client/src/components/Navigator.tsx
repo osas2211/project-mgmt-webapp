@@ -7,6 +7,7 @@ import {
   Group,
   TaskAltSharp,
   GroupAdd,
+  ChatOutlined,
 } from "@mui/icons-material"
 import { Icon } from "@mui/material"
 import { Button, Progress } from "antd"
@@ -56,17 +57,17 @@ export const Navigator = () => {
             Workload
           </li>
         </Link>
-        <Link to={"teams"}>
-          <li className={pathname === "/main/teams" ? "active-nav" : ""}>
+        <Link to={"chats"}>
+          <li className={pathname === "/main/chats" ? "active-nav" : ""}>
             <Icon
-              component={Group}
+              component={ChatOutlined}
               style={{
                 fontSize: "1.7rem",
                 paddingRight: "1rem",
                 color: "#60B2E5",
               }}
             />{" "}
-            Teams
+            Chats
           </li>
         </Link>
         <Link to={"meetings"}>

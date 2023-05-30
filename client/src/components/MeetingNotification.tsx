@@ -3,6 +3,7 @@ import { VideoCameraFilled } from "@ant-design/icons"
 import TodayRoundedIcon from "@mui/icons-material/TodayRounded"
 import { Link } from "react-router-dom"
 import { Icon } from "@mui/material"
+import { Button } from "antd"
 
 export const MeetingNotification: React.FC<{
   title: string
@@ -24,6 +25,10 @@ export const MeetingNotification: React.FC<{
             {date} - {time}
           </small>
         </p>
+        <Button type="primary" style={{ marginTop: "0.8rem" }}>
+          <VideoCameraFilled />
+          Attend Meeting
+        </Button>
       </div>
       {/* <VideoCameraFilled style={{ justifySelf: "flex-end" }} /> */}
     </div>

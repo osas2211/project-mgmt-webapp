@@ -1,9 +1,10 @@
+import { CallMadeOutlined } from "@mui/icons-material"
 import { Icon } from "@mui/material"
 import React from "react"
 import { Link } from "react-router-dom"
 import { MeetingNotification } from "../components/MeetingNotification"
 import { Divider } from "antd"
-import { VideoCameraFilled } from "@ant-design/icons"
+import { VideoCall } from "@mui/icons-material"
 
 export const Meetings = () => {
   return (
@@ -14,13 +15,7 @@ export const Meetings = () => {
         </h2>
         <div className="upcomings">
           <div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
+            <div>
               <MeetingNotification
                 title="Frontend Planning"
                 date="14th June, 2023"
@@ -28,18 +23,9 @@ export const Meetings = () => {
                 color="#1c93e1"
                 title_style={{ fontSize: "1.2rem" }}
               />
-              <Link to={"/main/meetings"}>
-                <VideoCameraFilled style={{ fontSize: 28, color: "#1c93e1" }} />
-              </Link>
             </div>
             <Divider />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
+            <div>
               <MeetingNotification
                 title="Backend Planning"
                 date="15th June, 2023"
@@ -47,18 +33,9 @@ export const Meetings = () => {
                 color="#ffc20c"
                 title_style={{ fontSize: "1.2rem" }}
               />
-              <Link to={"/main/meetings"}>
-                <VideoCameraFilled style={{ fontSize: 28, color: "#1c93e1" }} />
-              </Link>
             </div>
             <Divider />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
+            <div>
               <MeetingNotification
                 title="Article Submission Planning"
                 date="15th June, 2023"
@@ -66,9 +43,6 @@ export const Meetings = () => {
                 color="#FF595E"
                 title_style={{ fontSize: "1.2rem" }}
               />
-              <Link to={"/main/meetings"}>
-                <VideoCameraFilled style={{ fontSize: 28, color: "#1c93e1" }} />
-              </Link>
             </div>
           </div>
         </div>
