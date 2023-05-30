@@ -62,7 +62,7 @@ export const Projects = () => {
     },
   ]
   return (
-    <div>
+    <div className="page">
       <div
         style={{
           display: "flex",

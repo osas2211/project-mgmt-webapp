@@ -30,7 +30,7 @@ export const UserProfile = () => {
     },
   ]
   return (
-    <div className="profile">
+    <div className="profile page">
       <div
         style={{
           display: "flex",

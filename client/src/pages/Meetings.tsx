@@ -8,7 +8,7 @@ import { VideoCall } from "@mui/icons-material"
 
 export const Meetings = () => {
   return (
-    <div className="upcoming-meetings">
+    <div className="upcoming-meetings page">
       <div>
         <h2 style={{ marginBottom: "1.5rem" }}>
           <span></span> Scheduled Meetings

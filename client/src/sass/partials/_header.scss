@@ -3,6 +3,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 96%;
+  z-index: 1;
 
   ul {
     list-style: none;
@@ -66,9 +71,11 @@
 }
 
 .nav-bar {
-  width: 19%;
-  height: 90vh;
-  position: relative;
+  width: 17%;
+  height: 92vh;
+  position: fixed;
+  z-index: 1;
+  transition: 0.3s ease-in-out;
   ul {
     list-style: none;
     width: 85%;

@@ -7,10 +7,10 @@ import { MeetingNotification } from "../components/MeetingNotification"
 
 export const Dashboard = () => {
   return (
-    <div className="user-dashboard">
+    <div className="user-dashboard page">
       <div className="user-dashboard-top">
         <TasksSummary />
-        <div style={{ flexBasis: "50%" }}>
+        <div style={{ width: "50%" }}>
           <ProjectsSummary />
           <div className="upcoming-meetings">
             <div>

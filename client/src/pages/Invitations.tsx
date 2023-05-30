@@ -26,7 +26,7 @@ export const Invitations = () => {
     },
   ]
   return (
-    <div className="invitations">
+    <div className="invitations page">
       <div>
         <h2>
           Invitations

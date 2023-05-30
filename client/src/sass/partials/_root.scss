@@ -10,6 +10,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  -webkit-text-rendering: optimizeLegibility;
 
   h1,
   h2,
@@ -19,6 +20,7 @@
   h6 {
     font-family: $heading_font;
   }
+  box-sizing: border-box;
 }
 
 @media (prefers-color-scheme: light) {
