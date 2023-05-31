@@ -37,3 +37,17 @@
     opacity: 0.7;
   }
 }
+
+.project {
+  &-title {
+    font-size: 1.7rem;
+    font-family: "Inter";
+  }
+  &-meta-data {
+    p {
+      text-transform: capitalize;
+    }
+  }
+  .priority {
+  }
+}

@@ -13,6 +13,9 @@
       }
     }
   }
+  .pro-meet {
+    width: 50%;
+  }
   .user-tasks {
     width: 50%;
     position: relative;
@@ -157,6 +160,50 @@
       .upcomings {
         background-color: #fff;
         box-shadow: 1px 4px 8px #77777739;
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .user-dashboard {
+    &-top {
+      display: block;
+    }
+    .pro-meet,
+    .user-tasks {
+      width: 100%;
+      margin: auto;
+    }
+    .pro-meet {
+      margin-top: 2rem;
+    }
+
+    .user-projects {
+      .user-projects-summary {
+        .current-projects {
+          .current-project {
+            h3 {
+              font-size: 0.9rem;
+            }
+            img {
+              width: 5rem;
+              height: 3rem;
+              border-radius: 8px;
+            }
+            &-progress {
+              flex-basis: 40%;
+            }
+            &-icons {
+              img {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 100%;
+                margin-right: -1rem;
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -76,6 +76,8 @@
   position: fixed;
   z-index: 1;
   transition: 0.3s ease-in-out;
+  transform: translateX(-100%);
+
   ul {
     list-style: none;
     width: 85%;
@@ -135,5 +137,10 @@
     li {
       color: #3a3838;
     }
+  }
+}
+@media (max-width: 1000px) {
+  .nav-bar {
+    width: 15rem;
   }
 }

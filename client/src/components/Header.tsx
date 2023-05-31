@@ -17,9 +17,9 @@ export const Header: React.FC<{ name: string; id: string }> = ({
           <Logo />
         </Link>
         <ul>
-          <li>
+          {/* <li>
             <Icon component={DarkModeIcon} />
-          </li>
+          </li> */}
           <li className="notification-bell">
             <div className="notification-numbers">12</div>
             <BellFilled />

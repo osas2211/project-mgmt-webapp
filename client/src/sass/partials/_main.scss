@@ -8,27 +8,26 @@
   padding: 1.5rem;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-  width: 83%;
+  width: 100%;
   margin: 1.5rem 1.5rem;
   background-color: #232222;
-  margin-left: 17%;
   transition: 0.3s ease-in-out;
   min-height: 80vh;
 }
 .toggle-btn {
-  position: absolute;
-  top: 1.3rem;
+  position: fixed;
+  top: 1.2rem;
   left: 17rem;
   z-index: 3;
 }
 
 .all-content.showNav {
   .nav-bar {
-    transform: translateX(-105%);
+    transform: translateX(0%);
   }
   .page {
-    margin-left: 1.5rem;
-    width: 100%;
+    margin-left: 17%;
+    width: 83%;
   }
 }
 
@@ -40,5 +39,27 @@
     // background-color: #f6f6f6;
     background-color: #fbfbfb;
     color: #2e2e2e;
+  }
+}
+
+@media (max-width: 1000px) {
+  .all-content > .page {
+    width: 100%;
+    margin: 1.5rem auto;
+  }
+  .all-content.showNav {
+    .nav-bar {
+      transform: translateX(0%);
+    }
+    .page {
+      margin-left: 1.5rem;
+      width: 100%;
+    }
+  }
+  .toggle-btn {
+    left: 8rem;
+  }
+  .main-header {
+    padding: 1rem;
   }
 }

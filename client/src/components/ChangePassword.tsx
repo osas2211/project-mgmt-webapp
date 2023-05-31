@@ -24,7 +24,7 @@ export const ChangePassword = () => {
             autoFocus={true}
           />
         </Col>
-        <Col span={12}>
+        <Col xs={24} md={12}>
           <Input.Password
             placeholder="New Password"
             size="large"
@@ -32,7 +32,7 @@ export const ChangePassword = () => {
             style={{ padding: "0.7rem" }}
           />
         </Col>
-        <Col span={12}>
+        <Col xs={24} md={12}>
           <Input.Password
             placeholder="Confirm Password"
             size="large"

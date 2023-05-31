@@ -15,7 +15,7 @@ export default function CentralPage() {
   const [isUser, setIsUser] = useState<any>()
   const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
-  const [showNav, setShowNav] = useState(false)
+  const [showNav, setShowNav] = useState(true)
 
   useEffect(() => {
     const getUserState = async () => {
@@ -46,7 +46,7 @@ export default function CentralPage() {
                   showNav ? setShowNav(false) : setShowNav(true)
                 }}
               >
-                {showNav ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                {showNav ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
               </Button>
             </div>
             <Navigator />

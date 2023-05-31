@@ -82,7 +82,7 @@ export const Projects = () => {
       <div className="projects">
         <Row gutter={[26, 24]}>
           {/* TODO PROJECTS */}
-          <Col span={8} className="todo-projects">
+          <Col xs={24} md={12} lg={8} className="todo-projects">
             <h2>
               <span /> Todo Projects
             </h2>
@@ -92,7 +92,7 @@ export const Projects = () => {
           </Col>
 
           {/* IN PROGRESS */}
-          <Col span={8} className="working-projects">
+          <Col xs={24} md={12} lg={8} className="working-projects">
             <h2>
               <span style={{ backgroundColor: "#1c93e1" }} /> In Progress
             </h2>
@@ -102,7 +102,7 @@ export const Projects = () => {
           </Col>
 
           {/* COMPLETED PROJECTS */}
-          <Col span={8} className="todo-projects">
+          <Col xs={24} md={12} lg={8} className="todo-projects">
             <h2>
               <span style={{ backgroundColor: "#9BC53D" }} /> Completed Projects
             </h2>

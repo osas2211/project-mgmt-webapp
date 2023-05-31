@@ -10,7 +10,7 @@ export const Dashboard = () => {
     <div className="user-dashboard page">
       <div className="user-dashboard-top">
         <TasksSummary />
-        <div style={{ width: "50%" }}>
+        <div className="pro-meet">
           <ProjectsSummary />
           <div className="upcoming-meetings">
             <div>

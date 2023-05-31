@@ -64,7 +64,8 @@ export const TasksSummary = () => {
       </h3>
       <Row gutter={[16, 20]} className="user-tasks-summary">
         <Col
-          span={11}
+          xs={22}
+          md={11}
           className="user-tasks-summary1"
           style={{ padding: "1rem" }}
         >
@@ -100,7 +101,8 @@ export const TasksSummary = () => {
           />
         </Col>
         <Col
-          span={11}
+          xs={22}
+          md={11}
           className="user-tasks-summary1"
           style={{ padding: "1rem" }}
         >
@@ -136,7 +138,8 @@ export const TasksSummary = () => {
           />
         </Col>
         <Col
-          span={11}
+          xs={22}
+          md={11}
           className="user-tasks-summary1"
           style={{ padding: "1rem" }}
         >
@@ -172,7 +175,8 @@ export const TasksSummary = () => {
           />
         </Col>
         <Col
-          span={11}
+          xs={22}
+          md={11}
           className="user-tasks-summary1"
           style={{ padding: "1rem" }}
         >
