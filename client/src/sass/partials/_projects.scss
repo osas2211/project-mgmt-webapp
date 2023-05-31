@@ -42,12 +42,37 @@
   &-title {
     font-size: 1.7rem;
     font-family: "Inter";
+    margin-bottom: 1rem;
   }
   &-meta-data {
-    p {
+    span {
       text-transform: capitalize;
     }
   }
-  .priority {
+  .priority,
+  .due-date,
+  .tags,
+  .assignees,
+  .description {
+    margin-bottom: 1rem;
+    p {
+      color: #5c5c5c;
+    }
+  }
+}
+
+.project-tasks {
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .task-card {
+    margin-bottom: 1rem;
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: "Inter";
+      margin-bottom: 1rem;
+    }
   }
 }
