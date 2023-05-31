@@ -3,6 +3,7 @@ import React from "react"
 import { LinkOutlined } from "@ant-design/icons"
 import projectImg2 from "../assets/user.png"
 import user from "../assets/user.jpg"
+import { Link } from "react-router-dom"
 
 export const ProjectCard: React.FC<{
   img: string | undefined
@@ -13,57 +14,59 @@ export const ProjectCard: React.FC<{
 }> = ({ img, tags, title, description, links }) => {
   const { Meta } = Card
   return (
-    <div>
-      <Card
-        hoverable
-        className="project-card"
-        style={{ width: "100%" }}
-        bodyStyle={{ padding: "1rem" }}
-      >
-        <div>
-          {img && (
-            <img
-              alt="example"
-              src={img}
-              style={{
-                height: "12rem",
-                width: "100%",
-                borderTopLeftRadius: "5px",
-                borderTopRightRadius: "5px",
-                marginBottom: ".5rem",
-              }}
-            />
-          )}
-        </div>
-        <h2>{title}</h2>
-        <p className="project-card-desc">{description}</p>
-        <div className="tags">
-          {tags.map((tag, key) => (
-            <span key={key}>{tag}</span>
-          ))}
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            width: "100%",
-          }}
+    <Link to={`/main/project/${title}`}>
+      <div>
+        <Card
+          hoverable
+          className="project-card"
+          style={{ width: "100%" }}
+          bodyStyle={{ padding: "1rem" }}
         >
           <div>
-            <LinkOutlined
-              style={{ color: "#1c93e1", backgroundColor: "#1c92e11b" }}
-            />{" "}
-            <small>{links.length}</small>
+            {img && (
+              <img
+                alt="example"
+                src={img}
+                style={{
+                  height: "12rem",
+                  width: "100%",
+                  borderTopLeftRadius: "5px",
+                  borderTopRightRadius: "5px",
+                  marginBottom: ".5rem",
+                }}
+              />
+            )}
           </div>
-          <div className="current-project-icons">
-            <img src={projectImg2} alt="A Contributor" />
-            <img src={user} alt="A Contributor" />
-            <img src={projectImg2} alt="A Contributor" />
+          <h2>{title}</h2>
+          <p className="project-card-desc">{description}</p>
+          <div className="tags">
+            {tags.map((tag, key) => (
+              <span key={key}>{tag}</span>
+            ))}
           </div>
-        </div>
-      </Card>
-    </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <div>
+              <LinkOutlined
+                style={{ color: "#1c93e1", backgroundColor: "#1c92e11b" }}
+              />{" "}
+              <small>{links.length}</small>
+            </div>
+            <div className="current-project-icons">
+              <img src={projectImg2} alt="A Contributor" />
+              <img src={user} alt="A Contributor" />
+              <img src={projectImg2} alt="A Contributor" />
+            </div>
+          </div>
+        </Card>
+      </div>
+    </Link>
   )
 }

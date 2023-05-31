@@ -44,10 +44,10 @@ export default function () {
       openNotification("success", "Signed Up", "Sign Up Successful", api)
       setTimeout(() => navigate("/main/profile"), 500)
       setDisableForm(false)
-    } catch (error: any) {
+    } catch (err: any) {
       setDisableForm(false)
-      console.log(error)
-      openNotification("error", "Sign Up Failed", error, api)
+      console.log(err, data)
+      openNotification("error", "Sign Up Failed", err.message, api)
     }
   }
   return (
@@ -203,9 +203,7 @@ export default function () {
                         return Promise.resolve()
                       }
                       return Promise.reject(
-                        new Error(
-                          "The two passwords that you entered do not match!"
-                        )
+                        new Error("The two passwords you entered do not match!")
                       )
                     },
                   }),

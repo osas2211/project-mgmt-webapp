@@ -12,6 +12,7 @@ import { Dashboard } from "./pages/Dashboard"
 import { Projects } from "./pages/Projects"
 import { Invitations } from "./pages/Invitations"
 import { Meetings } from "./pages/Meetings"
+import { ProjectDetails } from "./pages/ProjectDetails"
 
 function App() {
   const LandingPage = React.lazy(() => import("./pages/LandingPage"))
@@ -67,6 +68,7 @@ function App() {
                 <Route path="profile" element={<UserProfile />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="projects" element={<Projects />} />
+                <Route path="project/:id" element={<ProjectDetails />} />
                 <Route path="invitations" element={<Invitations />} />
                 <Route path="meetings" element={<Meetings />} />
                 <Route path="*" element={<_404 />} />
