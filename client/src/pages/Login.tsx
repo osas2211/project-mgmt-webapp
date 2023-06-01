@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Logo } from "../components/Logo"
 import { Link, useNavigate } from "react-router-dom"
 import authImg from "../assets/auth.svg"
@@ -8,6 +8,7 @@ import { openNotification } from "../utils/openNotification"
 import { MenuFoldOutlined, CloseCircleFilled } from "@ant-design/icons"
 import { LandingMobileNav } from "./LandingPage"
 import { Account, Client } from "appwrite"
+import { useGetUserSessionQuery } from "../redux/services/projectify"
 
 const client = new Client()
 client
@@ -21,8 +22,11 @@ export default function () {
   const [disableForm, setDisableForm] = useState<boolean>(false)
   const [api, contextHolder] = notification.useNotification()
   const account = new Account(client)
-  // account.get().then((obj) => console.log(obj))
   const navigate = useNavigate()
+  const { data } = useGetUserSessionQuery("")
+  useEffect(() => {
+    if (data) navigate("/main/dashboard")
+  })
 
   const login = async (email: string, password: string) => {
     setLoading(true)

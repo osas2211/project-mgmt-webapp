@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Logo } from "../components/Logo"
 import { Link } from "react-router-dom"
 import authImg from "../assets/signup.svg"
@@ -11,7 +11,10 @@ import {
   MenuFoldOutlined,
 } from "@ant-design/icons"
 import { LandingMobileNav } from "./LandingPage"
-import { useSignUpMutation } from "../redux/services/projectify"
+import {
+  useGetUserSessionQuery,
+  useSignUpMutation,
+} from "../redux/services/projectify"
 import { useNavigate } from "react-router-dom"
 
 export default function () {
@@ -32,6 +35,10 @@ export default function () {
   }
   const [signup, { isLoading, error, data, isSuccess, isError }] =
     useSignUpMutation()
+  const session = useGetUserSessionQuery("")
+  useEffect(() => {
+    if (session.data) navigate("/main/dashboard")
+  })
 
   const createUserProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
