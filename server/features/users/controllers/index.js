@@ -30,9 +30,3 @@ export const createUser = async (req, res, next) => {
     return res.status(400).json({ success: false, message: error.message })
   }
 }
-
-export const login = async (req, res, next) => {
-  try {
-    await users
-  } catch (error) {}
-}
