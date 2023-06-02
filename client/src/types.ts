@@ -3,12 +3,13 @@ export interface User {
   $createdAt: string
   $updatedAt: string
   name: string
-  password: string
+  password?: string
   registration: string
-  status: string
+  status: boolean
   email: string
   phone: string
-  emailVerification: string
-  phoneVerification: string
+  emailVerification: boolean
+  phoneVerification: boolean
   prefs: object
+  jwt: string
 }

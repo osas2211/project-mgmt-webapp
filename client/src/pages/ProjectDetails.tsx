@@ -10,6 +10,7 @@ import React from "react"
 import { Link, useParams } from "react-router-dom"
 import { TaskCard } from "../components/TaskCard"
 import { type } from "os"
+import { AddTask } from "../components/AddTask"
 
 export const ProjectDetails = () => {
   const { id } = useParams()
@@ -120,13 +121,7 @@ export const ProjectDetails = () => {
       </div>
 
       <div className="project-tasks">
-        <Button
-          icon={<PlusCircleFilled />}
-          type={"primary"}
-          style={{ margin: "1rem 0" }}
-        >
-          Add Task
-        </Button>
+        <AddTask />
         <Row gutter={[16, 24]}>
           <Col xs={24} md={8}>
             <h2>

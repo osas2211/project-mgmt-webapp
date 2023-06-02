@@ -22,6 +22,8 @@ export const EditProfile = () => {
               }}
             >
               <img src={userImg} alt="User Icon" />
+
+              {/* ++++++++++++++ Upload Image +++++++++++++ */}
               <Button type="dashed" size="large">
                 <span style={{ display: "flex", alignItems: "center" }}>
                   <CloudUpload style={{ paddingRight: "0.5rem" }} />
@@ -42,7 +44,7 @@ export const EditProfile = () => {
                 <TextArea
                   showCount
                   maxLength={100}
-                  style={{ height: 180, marginBottom: 24 }}
+                  style={{ minHeight: 180, marginBottom: 24 }}
                   placeholder="Bio"
                 />
               </Col>

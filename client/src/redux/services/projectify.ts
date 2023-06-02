@@ -6,7 +6,7 @@ import {
 } from "@reduxjs/toolkit/query/react"
 import type { User } from "../../types"
 import { mutations } from "../endpoints/mutation_endpoints"
-import { Client, Account } from "appwrite"
+import { Client, Account, Models } from "appwrite"
 
 const client = new Client()
 client
@@ -20,13 +20,15 @@ export const projectifyApi = createApi({
   endpoints: (builder) => ({
     //SignUp
     signUp: mutations.signUpEndpoint(builder).signUp,
-    //Login
+    //Get User Session
     getUserSession: builder.query({
       async queryFn() {
         try {
           const user = await account.get()
+          const { jwt } = await account.createJWT()
+          const userData: User = { ...user, jwt }
           return {
-            data: user,
+            data: userData,
           }
         } catch (error: any) {
           return {
@@ -35,7 +37,10 @@ export const projectifyApi = createApi({
         }
       },
     }),
+    //Add Task
+    addTask: mutations.addTaskEndpoint(builder).addTask,
   }),
 })
 
-export const { useSignUpMutation, useGetUserSessionQuery } = projectifyApi
+export const { useSignUpMutation, useGetUserSessionQuery, useAddTaskMutation } =
+  projectifyApi

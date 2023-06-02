@@ -39,26 +39,27 @@ export const mutations = {
         meta,
         arg
       ) => response.data.message,
+    }),
+  }),
+  addTaskEndpoint: (build: buildType) => ({
+    addTask: build.mutation({
+      query: (body) => ({
+        url: "/task/addTask",
+        body: body,
+        method: "POST",
+      }),
 
-      // onQueryStarted is useful for optimistic updates
-      // The 2nd parameter is the destructured `MutationLifecycleApi`
-      // async onQueryStarted(
-      //   arg,
-      //   { dispatch, getState, queryFulfilled, requestId, extra, getCacheEntry }
-      // ) {},
-      // // The 2nd parameter is the destructured `MutationCacheLifecycleApi`
-      // async onCacheEntryAdded(
-      //   arg,
-      //   {
-      //     dispatch,
-      //     getState,
-      //     extra,
-      //     requestId,
-      //     cacheEntryRemoved,
-      //     cacheDataLoaded,
-      //     getCacheEntry,
-      //   }
-      // ) {},
+      // // Pick out data and prevent nested properties in a hook or selector
+      // transformResponse: (response: { data: User }, meta, arg) => response.data,
+
+      // transformErrorResponse: (
+      //   response: {
+      //     status: number
+      //     data: { success: boolean; message: string }
+      //   },
+      //   meta,
+      //   arg
+      // ) => response.data.message,
     }),
   }),
 }
