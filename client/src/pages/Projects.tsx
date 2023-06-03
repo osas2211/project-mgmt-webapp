@@ -5,6 +5,7 @@ import { ProjectCard } from "../components/ProjectCard"
 import projectImg from "../assets/project1.jpg"
 import projectImg2 from "../assets/project2.png"
 import projectImg3 from "../assets/project3.png"
+import { AddProject } from "../components/AddProject"
 
 export const Projects = () => {
   const data = [
@@ -71,13 +72,7 @@ export const Projects = () => {
         }}
       >
         <h3>All Projects</h3>
-        <PlusSquareFilled
-          style={{
-            fontSize: "2.5rem",
-            cursor: "pointer",
-            color: "#1c93e1",
-          }}
-        />
+        <AddProject />
       </div>
       <div className="projects">
         <Row gutter={[26, 24]}>

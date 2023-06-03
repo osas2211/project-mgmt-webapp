@@ -62,4 +62,13 @@ export const mutations = {
       // ) => response.data.message,
     }),
   }),
+  createProjectEndpoint: (build: buildType) => ({
+    createProject: build.mutation({
+      query: (body) => ({
+        url: "/project/createProject",
+        body,
+        method: "POST",
+      }),
+    }),
+  }),
 }

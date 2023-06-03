@@ -39,8 +39,13 @@ export const projectifyApi = createApi({
     }),
     //Add Task
     addTask: mutations.addTaskEndpoint(builder).addTask,
+    createProject: mutations.createProjectEndpoint(builder).createProject,
   }),
 })
 
-export const { useSignUpMutation, useGetUserSessionQuery, useAddTaskMutation } =
-  projectifyApi
+export const {
+  useSignUpMutation,
+  useGetUserSessionQuery,
+  useAddTaskMutation,
+  useCreateProjectMutation,
+} = projectifyApi
