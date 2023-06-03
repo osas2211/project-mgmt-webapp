@@ -22,11 +22,13 @@ import {
 } from "../redux/services/projectify"
 import { Client, ID, Storage } from "appwrite"
 import { v4 as uuidv4 } from "uuid"
+import { Tags } from "./Tags"
 
 export const AddProject = () => {
   console.log(uuidv4())
   const [openModal, setOpenModal] = useState(false)
   const [priority, setPriority] = useState<string>("high")
+  const [tags, setTags] = useState<string[]>([])
   const [date, setDate] = useState<any>()
   const [title, setTitle] = useState<string>()
   const [description, setDescription] = useState<string>()
@@ -68,6 +70,7 @@ export const AddProject = () => {
         priority,
         end_date: date,
         project_cover,
+        tags,
       }).unwrap()) as any
       message.success(project?.message)
       setDisabled(() => false)
@@ -153,6 +156,10 @@ export const AddProject = () => {
               ]}
               disabled={disabled}
             />
+          </Col>
+          <Col span={24}>
+            <p>Add Tags</p>
+            <Tags tags={tags} setTags={setTags} />
           </Col>
           <Col span={24}>
             <DatePicker
