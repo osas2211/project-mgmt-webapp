@@ -23,9 +23,9 @@ import {
 import { Client, ID, Storage } from "appwrite"
 import { v4 as uuidv4 } from "uuid"
 import { Tags } from "./Tags"
+import { Tags as Links } from "./Tags"
 
-export const AddProject = () => {
-  console.log(uuidv4())
+export const AddProject: React.FC<{ refetch: any }> = ({ refetch }) => {
   const [openModal, setOpenModal] = useState(false)
   const [priority, setPriority] = useState<string>("high")
   const [tags, setTags] = useState<string[]>([])
@@ -75,6 +75,8 @@ export const AddProject = () => {
       message.success(project?.message)
       setDisabled(() => false)
       setLoading(false)
+      setOpenModal(false)
+      await refetch()
     } catch (error: any) {
       console.log(error)
       message.error(error?.data?.message)

@@ -7,6 +7,7 @@ import {
 import type { User } from "../../types"
 import { mutations } from "../endpoints/mutation_endpoints"
 import { Client, Account, Models } from "appwrite"
+import { queries } from "../endpoints/query_endpoints"
 
 const client = new Client()
 client
@@ -23,6 +24,11 @@ export const projectifyApi = createApi({
     //Get User Session
     getUserSession: builder.query({
       async queryFn() {
+        const client = new Client()
+        client
+          .setEndpoint("https://cloud.appwrite.io/v1")
+          .setProject(import.meta.env.VITE_PROJECT_ID)
+        const account = new Account(client)
         try {
           const user = await account.get()
           const { jwt } = await account.createJWT()
@@ -37,8 +43,11 @@ export const projectifyApi = createApi({
         }
       },
     }),
+    // Get Project
+    getProjects: queries.getProject(builder).createProject,
     //Add Task
     addTask: mutations.addTaskEndpoint(builder).addTask,
+    // Create project
     createProject: mutations.createProjectEndpoint(builder).createProject,
   }),
 })
@@ -48,4 +57,5 @@ export const {
   useGetUserSessionQuery,
   useAddTaskMutation,
   useCreateProjectMutation,
+  useGetProjectsQuery,
 } = projectifyApi

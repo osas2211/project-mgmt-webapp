@@ -6,15 +6,16 @@ import user from "../assets/user.jpg"
 import { Link } from "react-router-dom"
 
 export const ProjectCard: React.FC<{
-  img: string | undefined
+  project_cover: string | undefined
   tags: string[]
   title: string
   description: string
-  links: string[]
-}> = ({ img, tags, title, description, links }) => {
+  files_links: string[]
+  $id: string
+}> = ({ project_cover, tags, title, description, files_links, $id }) => {
   const { Meta } = Card
   return (
-    <Link to={`/main/project/${title}`}>
+    <Link to={`/main/project/${$id}`}>
       <div>
         <Card
           hoverable
@@ -23,10 +24,10 @@ export const ProjectCard: React.FC<{
           bodyStyle={{ padding: "1rem" }}
         >
           <div>
-            {img && (
+            {project_cover && (
               <img
                 alt="example"
-                src={img}
+                src={project_cover}
                 style={{
                   height: "12rem",
                   width: "100%",
@@ -57,7 +58,7 @@ export const ProjectCard: React.FC<{
               <LinkOutlined
                 style={{ color: "#1c93e1", backgroundColor: "#1c92e11b" }}
               />{" "}
-              <small>{links.length}</small>
+              <small>{files_links.length}</small>
             </div>
             <div className="current-project-icons">
               <img src={projectImg2} alt="A Contributor" />
