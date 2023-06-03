@@ -27,3 +27,25 @@ export const createProject = async (req, res, next) => {
     return res.status(400).json({ success: false, message: error.message })
   }
 }
+
+export const getProjects = async (req, res, next) => {
+  // const { jwt } = req.body
+  const client = new Client()
+  client
+    .setEndpoint("https://cloud.appwrite.io/v1")
+    .setProject(process.env.PROJECT_ID)
+    .setKey(process.env.API_KEY)
+  const db = new Databases(client)
+  try {
+    const projects = await db.listDocuments(
+      process.env.DATABASE_ID,
+      process.env.PROJECT_COLLECTION_ID
+    )
+    return res.status(200).json({
+      success: true,
+      data: { projects: projects.documents },
+    })
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message })
+  }
+}
