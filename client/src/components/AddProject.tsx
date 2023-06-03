@@ -1,4 +1,8 @@
-import { PlusSquareFilled, UploadOutlined } from "@ant-design/icons"
+import {
+  LoadingOutlined,
+  PlusSquareFilled,
+  UploadOutlined,
+} from "@ant-design/icons"
 import {
   Button,
   Modal,
@@ -6,79 +10,101 @@ import {
   Row,
   Input,
   DatePicker,
-  Upload,
   message,
   Select,
   Spin,
 } from "antd"
-import type { UploadProps, DatePickerProps } from "antd"
-import React, { useState } from "react"
-import { useCreateProjectMutation } from "../redux/services/projectify"
+import type { DatePickerProps } from "antd"
+import React, { useRef, useState } from "react"
+import {
+  useCreateProjectMutation,
+  useGetUserSessionQuery,
+} from "../redux/services/projectify"
+import { Client, ID, Storage } from "appwrite"
+import { v4 as uuidv4 } from "uuid"
 
 export const AddProject = () => {
+  console.log(uuidv4())
   const [openModal, setOpenModal] = useState(false)
-  const [priority, setPriority] = useState<string>()
+  const [priority, setPriority] = useState<string>("high")
   const [date, setDate] = useState<any>()
   const [title, setTitle] = useState<string>()
   const [description, setDescription] = useState<string>()
   const [disabled, setDisabled] = useState(false)
   const [createProject, { data, isLoading, isError, isSuccess }] =
     useCreateProjectMutation()
-
-  const props: UploadProps = {
-    name: "file",
-    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    headers: {
-      authorization: "authorization-text",
-    },
-    onChange(info) {
-      if (info.file.status !== "uploading") {
-        console.log(info.file, info.fileList)
-      }
-      if (info.file.status === "done") {
-        message.success(`${info.file.name} file uploaded successfully`)
-      } else if (info.file.status === "error") {
-        message.error(`${info.file.name} file upload failed.`)
-      }
-    },
+  const [loading, setLoading] = useState<boolean>(false)
+  const { data: userData } = useGetUserSessionQuery(null)
+  const [file, setFile] = useState<File>()
+  const inputRef = useRef<HTMLInputElement | null>(null)
+  const jwt = userData && userData.jwt
+  const client = new Client()
+    .setEndpoint("https://cloud.appwrite.io/v1")
+    .setProject(import.meta.env.VITE_PROJECT_ID)
+  const storage = new Storage(client)
+  const uploadImage = async () => {
+    const id = uuidv4()
+    const image = await storage.createFile(
+      import.meta.env.VITE_BUCKET_ID,
+      id,
+      file as File
+    )
+    const img_url = storage.getFileView(import.meta.env.VITE_BUCKET_ID, id)
+    console.log(image, img_url)
+    return img_url
   }
   const onChangeDate: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString)
     setDate(date)
   }
 
   const onCreateProject = async () => {
     try {
       setDisabled(() => true)
+      setLoading(() => true)
+      const project_cover = await uploadImage()
       const project = (await createProject({
         title,
         description,
         priority,
         end_date: date,
+        project_cover,
       }).unwrap()) as any
       message.success(project?.message)
       setDisabled(() => false)
+      setLoading(false)
     } catch (error: any) {
       console.log(error)
-      message.error(error.data.message)
+      message.error(error?.data?.message)
       setDisabled(() => false)
+      setLoading(false)
     }
   }
   return (
     <>
       <Button
-        icon={!isLoading && <PlusSquareFilled />}
+        icon={!loading && <PlusSquareFilled />}
         type="primary"
         onClick={() => setOpenModal(() => true)}
+        disabled={disabled}
       >
-        {isLoading ? <Spin /> : "Create Project"}
+        {loading ? (
+          <LoadingOutlined color="#ffffff" style={{ fontSize: 20 }} />
+        ) : (
+          "Create Project"
+        )}
       </Button>
       <Modal
         title="Create New Project"
         open={openModal}
         onCancel={() => setOpenModal(() => false)}
         onOk={onCreateProject}
-        okText={isLoading ? <Spin /> : "Create Project"}
+        okText={
+          loading ? (
+            <LoadingOutlined color="#ffffff" style={{ fontSize: 20 }} />
+          ) : (
+            "Create Project"
+          )
+        }
       >
         <Row gutter={[16, 24]}>
           <Col span={24}>
@@ -98,11 +124,20 @@ export const AddProject = () => {
             />
           </Col>
           <Col span={24}>
-            <Upload {...props}>
-              <Button icon={<UploadOutlined />} disabled={disabled}>
-                Upload Project Cover Image
-              </Button>
-            </Upload>
+            <p>Upload Cover Image</p>
+            <input
+              placeholder="Upload Cover Image"
+              onChange={(e) => {
+                if (!e.target.files) {
+                  return
+                }
+
+                setFile(e.target.files[0])
+              }}
+              ref={inputRef}
+              disabled={disabled}
+              type="file"
+            />
           </Col>
           <Col span={24}>
             <span>Priority</span>

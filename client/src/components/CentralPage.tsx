@@ -29,7 +29,6 @@ export default function CentralPage() {
       }
     }
     getUserState()
-    console.log(isUser)
   }, [])
   return (
     <div>
