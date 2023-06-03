@@ -4,6 +4,7 @@ import colors from "colors"
 import cors from "cors"
 import userRouter from "./features/users/routes/index.js"
 import taskRouter from "./features/tasks/routes/index.js"
+import projectRouter from "./features/projects/routes/index.js"
 dotenv.config()
 
 colors.enable()
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/task", taskRouter)
+app.use("/api/v1/project", projectRouter)
 
 app.listen(process.env.PORT, async () => {
   console.log(`Server is running on port ${process.env.PORT}`.green)
