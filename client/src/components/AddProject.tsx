@@ -52,7 +52,6 @@ export const AddProject: React.FC<{ refetch: any }> = ({ refetch }) => {
       file as File
     )
     const img_url = storage.getFileView(import.meta.env.VITE_BUCKET_ID, id)
-    console.log(image, img_url)
     return img_url
   }
   const onChangeDate: DatePickerProps["onChange"] = (date, dateString) => {
@@ -63,7 +62,8 @@ export const AddProject: React.FC<{ refetch: any }> = ({ refetch }) => {
     try {
       setDisabled(() => true)
       setLoading(() => true)
-      const project_cover = await uploadImage()
+      let project_cover: URL | string = ""
+      if (file) project_cover = await uploadImage()
       const project = (await createProject({
         title,
         description,
@@ -71,6 +71,7 @@ export const AddProject: React.FC<{ refetch: any }> = ({ refetch }) => {
         end_date: date,
         project_cover,
         tags,
+        email: userData?.email,
       }).unwrap()) as any
       message.success(project?.message)
       setDisabled(() => false)

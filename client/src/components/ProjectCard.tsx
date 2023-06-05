@@ -41,7 +41,7 @@ export const ProjectCard: React.FC<{
           <h2>{title}</h2>
           <p className="project-card-desc">{description}</p>
           <div className="tags">
-            {tags.map((tag, key) => (
+            {tags.slice(0, 2).map((tag, key) => (
               <span key={key}>{tag}</span>
             ))}
           </div>

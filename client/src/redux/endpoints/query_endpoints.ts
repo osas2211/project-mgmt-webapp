@@ -21,13 +21,24 @@ type buildType = EndpointBuilder<
   "projectifyAPI"
 >
 export const queries = {
-  getProject: (build: buildType) => {
+  getProjectsEndpoint: (build: buildType) => {
     return {
-      createProject: build.query({
-        query: () => ({
-          url: "/project/projects",
+      getProjects: build.query({
+        query: (args: any) => ({
+          url: `/project/projects?jwt=${args.jwt}`,
           method: "GET",
-          headers: {},
+        }),
+        transformResponse: (response: { data: any }, meta, arg) =>
+          response.data,
+      }),
+    }
+  },
+  getProjectEndpoint: (build: buildType) => {
+    return {
+      getProject: build.query({
+        query: ({ id }) => ({
+          url: `/project/${id}`,
+          method: "GET",
         }),
         transformResponse: (response: { data: any }, meta, arg) =>
           response.data,
