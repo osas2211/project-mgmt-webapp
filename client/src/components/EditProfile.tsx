@@ -2,9 +2,12 @@ import React from "react"
 import { Button, Divider, Row, Col, Input } from "antd"
 import userImg from "../assets/user.png"
 import { CloudUpload } from "@mui/icons-material"
+import { UploadImage } from "./UploadImage"
+import { useGetUserSessionQuery } from "../redux/services/projectify"
 
 export const EditProfile = () => {
   const { TextArea } = Input
+  const { data, refetch } = useGetUserSessionQuery("")
   return (
     <div className="edit-profile">
       <Divider orientation="left">
@@ -21,15 +24,10 @@ export const EditProfile = () => {
                 flexDirection: "column",
               }}
             >
-              <img src={userImg} alt="User Icon" />
+              <img src={data?.prefs.profile_picture} alt="User Icon" />
 
               {/* ++++++++++++++ Upload Image +++++++++++++ */}
-              <Button type="dashed" size="large">
-                <span style={{ display: "flex", alignItems: "center" }}>
-                  <CloudUpload style={{ paddingRight: "0.5rem" }} />
-                  <span>Upload</span>
-                </span>
-              </Button>
+              <UploadImage />
             </div>
           </Col>
           <Col xs={24} md={16}>

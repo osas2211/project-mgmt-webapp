@@ -10,6 +10,6 @@ export interface User {
   phone: string
   emailVerification: boolean
   phoneVerification: boolean
-  prefs: object
+  prefs: any
   jwt: string
 }

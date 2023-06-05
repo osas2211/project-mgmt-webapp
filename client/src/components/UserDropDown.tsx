@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import { Dropdown } from "antd"
 import { Typography } from "antd"
 import { Logout } from "./Logout"
+import { useGetUserSessionQuery } from "../redux/services/projectify"
 
 const { Text } = Typography
 
@@ -12,6 +13,7 @@ export const UserDropDown: React.FC<{ name: string; id: string }> = ({
   name,
   id,
 }) => {
+  const { data } = useGetUserSessionQuery("")
   type item = {
     key: number
     label: ReactNode
@@ -38,7 +40,7 @@ export const UserDropDown: React.FC<{ name: string; id: string }> = ({
   return (
     <Dropdown menu={{ items }} trigger={["click"]}>
       <div className="user-dropdown">
-        <img src={userImg} alt="user" />
+        <img src={data?.prefs.profile_picture} alt="user" />
         <div style={{ marginLeft: "0.5rem" }}>
           <h4>
             {name} <CaretDownFilled style={{ fontSize: "0.8rem" }} />

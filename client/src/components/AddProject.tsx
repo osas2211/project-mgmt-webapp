@@ -72,6 +72,7 @@ export const AddProject: React.FC<{ refetch: any }> = ({ refetch }) => {
         project_cover,
         tags,
         email: userData?.email,
+        manager: userData?.$id,
       }).unwrap()) as any
       message.success(project?.message)
       setDisabled(() => false)
@@ -142,6 +143,7 @@ export const AddProject: React.FC<{ refetch: any }> = ({ refetch }) => {
               }}
               ref={inputRef}
               disabled={disabled}
+              accept=".png, .jpeg"
               type="file"
             />
           </Col>

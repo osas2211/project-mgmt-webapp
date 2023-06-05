@@ -71,4 +71,13 @@ export const mutations = {
       }),
     }),
   }),
+  addCollaboratorEndpoint: (build: buildType) => ({
+    addCollaborator: build.mutation({
+      query: (body) => ({
+        url: "/project/addCollaborator",
+        body,
+        method: "POST",
+      }),
+    }),
+  }),
 }

@@ -1,9 +1,10 @@
-import { Card } from "antd"
+import { Avatar, Card } from "antd"
 import React from "react"
 import { LinkOutlined } from "@ant-design/icons"
 import projectImg2 from "../assets/user.png"
 import user from "../assets/user.jpg"
 import { Link } from "react-router-dom"
+import { useGetProjectQuery } from "../redux/services/projectify"
 
 export const ProjectCard: React.FC<{
   project_cover: string | undefined
@@ -14,6 +15,7 @@ export const ProjectCard: React.FC<{
   $id: string
 }> = ({ project_cover, tags, title, description, files_links, $id }) => {
   const { Meta } = Card
+  const { data } = useGetProjectQuery({ id: $id })
   return (
     <Link to={`/main/project/${$id}`}>
       <div>
@@ -56,15 +58,26 @@ export const ProjectCard: React.FC<{
           >
             <div>
               <LinkOutlined
-                style={{ color: "#1c93e1", backgroundColor: "#1c92e11b" }}
+                style={{
+                  color: "#1c93e1",
+                  backgroundColor: "#1c92e11b",
+                  padding: "0.3rem",
+                  borderRadius: 5,
+                }}
               />{" "}
               <small>{files_links.length}</small>
             </div>
-            <div className="current-project-icons">
-              <img src={projectImg2} alt="A Contributor" />
-              <img src={user} alt="A Contributor" />
-              <img src={projectImg2} alt="A Contributor" />
-            </div>
+            <Avatar.Group
+              maxCount={3}
+              maxPopoverTrigger="click"
+              maxStyle={{ cursor: "pointer" }}
+            >
+              {data?.members_img.map((img: string, key: number) => (
+                <Avatar key={key} src={img}>
+                  A Contributor
+                </Avatar>
+              ))}
+            </Avatar.Group>
           </div>
         </Card>
       </div>

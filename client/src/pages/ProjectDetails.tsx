@@ -110,7 +110,7 @@ export const ProjectDetails = () => {
                     maxStyle={{ cursor: "pointer" }}
                   >
                     {/* MEMEBRS URL */}
-                    {data?.project.tags.map((member: any, key: any) => (
+                    {data?.members_img.map((member: any, key: any) => (
                       <Avatar key={key} src={member}>
                         Hello
                       </Avatar>

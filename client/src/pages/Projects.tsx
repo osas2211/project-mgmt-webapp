@@ -16,6 +16,7 @@ export const Projects = () => {
     isLoading,
     error,
   } = useGetProjectsQuery({ jwt: userData?.jwt })
+  console.log(error, projectData)
   return (
     <div className="page">
       <div
@@ -42,42 +43,53 @@ export const Projects = () => {
         </div>
       ) : (
         <>
-          <div className="projects">
-            <Row gutter={[26, 24]}>
-              {/* TODO PROJECTS */}
-              <Col xs={24} md={12} lg={8} className="todo-projects">
-                <h2>
-                  <span /> Todo Projects
-                </h2>
-                {projectData?.projects
-                  .filter((project: any) => project.status === "uncompleted")
-                  .map((datum: any, key: any) => (
-                    <ProjectCard {...datum} key={datum.$id} />
-                  ))}
-              </Col>
+          {projectData.projects.length === 0 ? (
+            <h1 style={{ opacity: 0.5, textAlign: "center", marginTop: 64 }}>
+              No Project
+            </h1>
+          ) : (
+            <>
+              <div className="projects">
+                <Row gutter={[26, 24]}>
+                  {/* TODO PROJECTS */}
+                  <Col xs={24} md={12} lg={8} className="todo-projects">
+                    <h2>
+                      <span /> Todo Projects
+                    </h2>
+                    {projectData?.projects
+                      .filter(
+                        (project: any) => project.status === "uncompleted"
+                      )
+                      .map((datum: any, key: any) => (
+                        <ProjectCard {...datum} key={datum.$id} />
+                      ))}
+                  </Col>
 
-              {/* IN PROGRESS */}
-              <Col xs={24} md={12} lg={8} className="working-projects">
-                <h2>
-                  <span style={{ backgroundColor: "#1c93e1" }} /> In Progress
-                </h2>
-                {/* {data2.reverse().map((datum, key) => (
+                  {/* IN PROGRESS */}
+                  <Col xs={24} md={12} lg={8} className="working-projects">
+                    <h2>
+                      <span style={{ backgroundColor: "#1c93e1" }} /> In
+                      Progress
+                    </h2>
+                    {/* {data2.reverse().map((datum, key) => (
               <ProjectCard {...datum} key={key} />
             ))} */}
-              </Col>
+                  </Col>
 
-              {/* COMPLETED PROJECTS */}
-              <Col xs={24} md={12} lg={8} className="todo-projects">
-                <h2>
-                  <span style={{ backgroundColor: "#9BC53D" }} /> Completed
-                  Projects
-                </h2>
-                {/* {data3.map((datum, key) => (
+                  {/* COMPLETED PROJECTS */}
+                  <Col xs={24} md={12} lg={8} className="todo-projects">
+                    <h2>
+                      <span style={{ backgroundColor: "#9BC53D" }} /> Completed
+                      Projects
+                    </h2>
+                    {/* {data3.map((datum, key) => (
               <ProjectCard {...datum} key={key} />
             ))} */}
-              </Col>
-            </Row>
-          </div>
+                  </Col>
+                </Row>
+              </div>
+            </>
+          )}
         </>
       )}
     </div>

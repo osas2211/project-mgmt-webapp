@@ -18,20 +18,22 @@
 
 .project-card {
   margin-bottom: 1rem;
-  span:nth-child(1),
-  span:nth-child(2) {
-    display: inline-block;
-    padding: 0.3rem 0.5rem;
-    border-radius: 5px;
-    margin: 0.8rem 0.2rem 0.8rem 0;
-  }
-  span:nth-child(1) {
-    color: #ff595e;
-    background-color: #ff595f16;
-  }
-  span:nth-child(2) {
-    color: #9bc53d;
-    background-color: #9ac53d26;
+  .tags {
+    span:nth-child(1),
+    span:nth-child(2) {
+      display: inline-block;
+      padding: 0.3rem 0.5rem;
+      border-radius: 5px;
+      margin: 0.8rem 0.2rem 0.8rem 0;
+    }
+    span:nth-child(1) {
+      color: #ff595e;
+      background-color: #ff595f16;
+    }
+    span:nth-child(2) {
+      color: #9bc53d;
+      background-color: #9ac53d26;
+    }
   }
   p {
     opacity: 0.7;
