@@ -97,6 +97,9 @@ export const getProject = async (req, res, next) => {
     const users = new Users(client)
     const team = await teams.get(id)
     const members = (await teams.listMemberships(id)).memberships
+    const members_essentials = members.map((member) => {
+      return { id: member.userId, name: member.userName }
+    })
     const members_id = members.map((member) => {
       return member.userId
     })
@@ -109,7 +112,7 @@ export const getProject = async (req, res, next) => {
     )
     return res.status(200).json({
       success: true,
-      data: { project, members, members_img },
+      data: { project, members: members_essentials, members_img },
     })
   } catch (error) {
     return res.status(400).json({ success: false, message: error.message })
@@ -155,24 +158,14 @@ export const delA = async (req, res, next) => {
     //     )
     // )
 
-    // const teams_ = await teams.list()
-    // const ids = teams_.teams.map((team) => team.$id)
-    // ids.forEach(async (id) => await teams.delete(id))
-    // console.log(ids)
-    // return res.status(200).json({
-    //   success: true,
-    // })
+    const teams_ = await teams.list()
+    const ids = teams_.teams.map((team) => team.$id)
+    ids.forEach(async (id) => await teams.delete(id))
+    console.log(ids)
+    return res.status(200).json({
+      success: true,
+    })
 
-    await db.createRelationshipAttribute(
-      process.env.DATABASE_ID, // Database ID
-      process.env.PROJECT_COLLECTION_ID, // Collection ID
-      process.env.TASK_COLLECTION_ID, // Related collection ID
-      "oneToMany" // Relationship type
-      // true, // Is two-way
-      // "members_img", // Attribute key
-      // "assigned_to", // Two-way attribute key
-      // "cascade" // On delete action
-    )
     return res.status(200).json({
       success: true,
     })

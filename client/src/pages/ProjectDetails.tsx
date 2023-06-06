@@ -112,7 +112,7 @@ export const ProjectDetails = () => {
                     {/* MEMEBRS URL */}
                     {data?.members_img.map((member: any, key: any) => (
                       <Avatar key={key} src={member}>
-                        Hello
+                        Contributor
                       </Avatar>
                     ))}
                   </Avatar.Group>
@@ -133,15 +133,23 @@ export const ProjectDetails = () => {
           </div>
 
           <div className="project-tasks">
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <AddTask />
-              {/* ADDING COLLABORATORS IS ONLY VISIBLE TO PROJECT MANAGER */}
-              {data?.project.manager === userData?.$id ? (
+            {/* ADDING TASKS AND COLLABORATORS IS ONLY VISIBLE TO PROJECT MANAGER */}
+
+            {data?.project.manager === userData?.$id ? (
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <AddTask
+                  projectID={data?.project.$id}
+                  members={data?.members.map(
+                    (member: { id: string; name: string }) => {
+                      return { value: member.id, label: member.name }
+                    }
+                  )}
+                />
                 <AddCollaborator refetch={refetch} id={data?.project.$id} />
-              ) : (
-                <></>
-              )}
-            </div>
+              </div>
+            ) : (
+              <></>
+            )}
 
             <Row gutter={[16, 24]}>
               <Col xs={24} md={8}>

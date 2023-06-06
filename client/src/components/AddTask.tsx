@@ -8,6 +8,7 @@ import {
   DatePicker,
   DatePickerProps,
   notification,
+  Select,
 } from "antd"
 import React, { useState } from "react"
 import {
@@ -16,8 +17,12 @@ import {
 } from "../redux/services/projectify"
 import { openNotification } from "../utils/openNotification"
 
-export const AddTask = () => {
+export const AddTask: React.FC<{ projectID: string; members: any[] }> = ({
+  projectID,
+  members,
+}) => {
   const [api, contextHolder] = notification.useNotification()
+  const [assigned_to, setAssignedTo] = useState<string>()
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [date, setDate] = useState<any>()
   const [title, setTitle] = useState("")
@@ -42,8 +47,9 @@ export const AddTask = () => {
         description: desc,
         assigned_by: userData?.$id,
         due_date: date,
-        assigned_to: ["ewons"],
         jwt: userData?.jwt,
+        projectID,
+        assigned_to,
       }).unwrap()
       console.log(taskData)
       openNotification(
@@ -93,6 +99,15 @@ export const AddTask = () => {
               style={{ minHeight: 100, marginBottom: 24 }}
               placeholder="Description"
               onChange={(e) => setDesc(e.target.value)}
+            />
+          </Col>
+          <Col span={24}>
+            <p>Assign To</p>
+            <Select
+              // defaultValue="lucy"
+              style={{ width: "100%" }}
+              onChange={(value) => setAssignedTo(value)}
+              options={members}
             />
           </Col>
           <Col span={24}>
