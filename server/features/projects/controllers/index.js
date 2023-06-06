@@ -17,6 +17,7 @@ globalClient
 const teams = new Teams(globalClient)
 const db = new Databases(globalClient)
 const storage = new Storage(globalClient)
+const users = new Users(globalClient)
 export const createProject = async (req, res, next) => {
   try {
     const { title, project_cover, email, ...rest } = req.body
@@ -101,7 +102,6 @@ export const getProject = async (req, res, next) => {
     })
     const profiles = await users.list([Query.equal("$id", members_id)])
     const members_img = profiles.users.map((user) => user.prefs.profile_picture)
-    console.log(members_img)
     const project = await db.getDocument(
       process.env.DATABASE_ID,
       process.env.PROJECT_COLLECTION_ID,
@@ -118,8 +118,17 @@ export const getProject = async (req, res, next) => {
 
 export const addCollaborator = async (req, res, next) => {
   try {
-    const { userID, projectID, email } = req.body
-    await teams.createMembership(projectID, ["member"], "localhost:8000", email)
+    const { userID, projectID } = req.body
+    const user = await users.get(userID)
+    console.log(user)
+    if (!user) throw new Error("User Not Found")
+    const email = user.email
+    await teams.createMembership(
+      projectID,
+      ["member"],
+      "https://cloud.appwrite.io/v1",
+      email
+    )
     return res.status(200).json({
       success: true,
       message: `${userID} has been Added as collaborator`,
@@ -146,12 +155,28 @@ export const delA = async (req, res, next) => {
     //     )
     // )
 
-    const teams_ = await teams.list()
-    const ids = teams_.teams.map((team) => team.$id)
-    ids.forEach(async (id) => await teams.delete(id))
-    console.log(ids)
+    // const teams_ = await teams.list()
+    // const ids = teams_.teams.map((team) => team.$id)
+    // ids.forEach(async (id) => await teams.delete(id))
+    // console.log(ids)
+    // return res.status(200).json({
+    //   success: true,
+    // })
+
+    await db.createRelationshipAttribute(
+      process.env.DATABASE_ID, // Database ID
+      process.env.PROJECT_COLLECTION_ID, // Collection ID
+      process.env.TASK_COLLECTION_ID, // Related collection ID
+      "oneToMany" // Relationship type
+      // true, // Is two-way
+      // "members_img", // Attribute key
+      // "assigned_to", // Two-way attribute key
+      // "cascade" // On delete action
+    )
     return res.status(200).json({
       success: true,
     })
-  } catch (error) {}
+  } catch (error) {
+    return res.status(error.code).json({ success: false, message: error })
+  }
 }
