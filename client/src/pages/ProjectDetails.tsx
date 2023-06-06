@@ -10,26 +10,17 @@ import React from "react"
 import { Link, useParams } from "react-router-dom"
 import { TaskCard } from "../components/TaskCard"
 import { AddTask } from "../components/AddTask"
-import { useGetProjectQuery } from "../redux/services/projectify"
+import {
+  useGetProjectQuery,
+  useGetUserSessionQuery,
+} from "../redux/services/projectify"
+import { AddCollaborator } from "../components/AddCollaborator"
 
 export const ProjectDetails = () => {
   const { id } = useParams()
   const { data, isLoading, error, refetch } = useGetProjectQuery({ id })
+  const { data: userData } = useGetUserSessionQuery("")
   console.log(data)
-  // const data = {
-  //   title: "The Avonova Project",
-  //   priority: "high",
-  //   due_date: "14th June 2023",
-  //   tags: ["web", "UI Design", "UX Research"],
-  //   assignees: [
-  //     "https://xsgames.co/randomusers/avatar.php?g=pixel&key=2",
-  //     "https://xsgames.co/randomusers/avatar.php?g=pixel&key=3",
-  //     "https://xsgames.co/randomusers/avatar.php?g=pixel&key=4",
-  //     "https://xsgames.co/randomusers/avatar.php?g=pixel&key=5",
-  //     "https://xsgames.co/randomusers/avatar.php?g=pixel&key=6",
-  //     "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-  //   ],
-  // }
   const colors = ["gold", "green", "blue"]
   return (
     <div className="project page">
@@ -68,7 +59,15 @@ export const ProjectDetails = () => {
                   <p>Priority</p>
                 </Col>
                 <Col xs={5} md={2}>
-                  <Tag color="magenta">
+                  <Tag
+                    color={
+                      data?.project.priority === "low"
+                        ? "success"
+                        : data?.project.priority === "mid"
+                        ? "warning"
+                        : "magenta"
+                    }
+                  >
                     <span>{data?.project.priority}</span>
                   </Tag>
                 </Col>
@@ -98,6 +97,7 @@ export const ProjectDetails = () => {
                 </Col>
               </Row>
             </div>
+
             <div className="assignees">
               <Row align={"middle"}>
                 <Col xs={5} md={2}>
@@ -133,7 +133,16 @@ export const ProjectDetails = () => {
           </div>
 
           <div className="project-tasks">
-            <AddTask />
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <AddTask />
+              {/* ADDING COLLABORATORS IS ONLY VISIBLE TO PROJECT MANAGER */}
+              {data?.project.manager === userData?.$id ? (
+                <AddCollaborator refetch={refetch} id={data?.project.$id} />
+              ) : (
+                <></>
+              )}
+            </div>
+
             <Row gutter={[16, 24]}>
               <Col xs={24} md={8}>
                 <h2>

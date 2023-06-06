@@ -16,7 +16,7 @@ export const Projects = () => {
     isLoading,
     error,
   } = useGetProjectsQuery({ jwt: userData?.jwt })
-  console.log(error, projectData)
+  if (error) window.location.reload()
   return (
     <div className="page">
       <div

@@ -143,7 +143,7 @@ export const AddProject: React.FC<{ refetch: any }> = ({ refetch }) => {
               }}
               ref={inputRef}
               disabled={disabled}
-              accept=".png, .jpeg"
+              accept=".png, .jpeg, .jpg"
               type="file"
             />
           </Col>

@@ -6,6 +6,7 @@ import {
   ID,
   Storage,
   Query,
+  Users,
 } from "node-appwrite"
 
 const globalClient = new Client()
@@ -63,6 +64,9 @@ export const getProjects = async (req, res, next) => {
     const db = new Databases(client)
     const team = new Teams(client)
     const teams = await team.list()
+    if (teams.teams.length === 0)
+      return res.status(200).json({ data: { projects: [] } })
+
     const teams_id = teams.teams.map((team) => team.$id)
     const projects = await db.listDocuments(
       process.env.DATABASE_ID,
@@ -89,19 +93,65 @@ export const getProject = async (req, res, next) => {
       .setKey(process.env.API_KEY)
     const db = new Databases(client)
     const teams = new Teams(client)
+    const users = new Users(client)
     const team = await teams.get(id)
-    const members = await teams.listMemberships(id)
+    const members = (await teams.listMemberships(id)).memberships
+    const members_id = members.map((member) => {
+      return member.userId
+    })
+    const profiles = await users.list([Query.equal("$id", members_id)])
+    const members_img = profiles.users.map((user) => user.prefs.profile_picture)
+    console.log(members_img)
     const project = await db.getDocument(
       process.env.DATABASE_ID,
       process.env.PROJECT_COLLECTION_ID,
       id
     )
-    console.log({ project, members })
     return res.status(200).json({
       success: true,
-      data: { project, members },
+      data: { project, members, members_img },
     })
   } catch (error) {
     return res.status(400).json({ success: false, message: error.message })
   }
+}
+
+export const addCollaborator = async (req, res, next) => {
+  try {
+    const { userID, projectID, email } = req.body
+    await teams.createMembership(projectID, ["member"], "localhost:8000", email)
+    return res.status(200).json({
+      success: true,
+      message: `${userID} has been Added as collaborator`,
+    })
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message })
+  }
+}
+
+export const delA = async (req, res, next) => {
+  try {
+    // const docs = await db.listDocuments(
+    //   process.env.DATABASE_ID,
+    //   process.env.PROJECT_COLLECTION_ID
+    // )
+    // const ids = docs.documents.map((doc) => doc.$id)
+    // console.log(ids)
+    // ids.forEach(
+    //   async (id) =>
+    //     await db.deleteDocument(
+    //       process.env.DATABASE_ID,
+    //       process.env.PROJECT_COLLECTION_ID,
+    //       id
+    //     )
+    // )
+
+    const teams_ = await teams.list()
+    const ids = teams_.teams.map((team) => team.$id)
+    ids.forEach(async (id) => await teams.delete(id))
+    console.log(ids)
+    return res.status(200).json({
+      success: true,
+    })
+  } catch (error) {}
 }

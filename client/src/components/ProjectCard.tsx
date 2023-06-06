@@ -1,6 +1,6 @@
 import { Avatar, Card } from "antd"
 import React from "react"
-import { LinkOutlined } from "@ant-design/icons"
+import { LinkOutlined, LoadingOutlined } from "@ant-design/icons"
 import projectImg2 from "../assets/user.png"
 import user from "../assets/user.jpg"
 import { Link } from "react-router-dom"
@@ -15,7 +15,7 @@ export const ProjectCard: React.FC<{
   $id: string
 }> = ({ project_cover, tags, title, description, files_links, $id }) => {
   const { Meta } = Card
-  const { data } = useGetProjectQuery({ id: $id })
+  const { data, isLoading } = useGetProjectQuery({ id: $id })
   return (
     <Link to={`/main/project/${$id}`}>
       <div>
@@ -72,11 +72,17 @@ export const ProjectCard: React.FC<{
               maxPopoverTrigger="click"
               maxStyle={{ cursor: "pointer" }}
             >
-              {data?.members_img.map((img: string, key: number) => (
-                <Avatar key={key} src={img}>
-                  A Contributor
-                </Avatar>
-              ))}
+              {isLoading ? (
+                <LoadingOutlined />
+              ) : (
+                <>
+                  {data?.members_img.map((img: string, key: number) => (
+                    <Avatar key={key} src={img}>
+                      A Contributor
+                    </Avatar>
+                  ))}
+                </>
+              )}
             </Avatar.Group>
           </div>
         </Card>
