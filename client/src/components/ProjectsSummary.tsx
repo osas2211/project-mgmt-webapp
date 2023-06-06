@@ -80,7 +80,7 @@ export const CurrentProject: React.FC<{
 }> = ({ projectImg, progress, title }) => {
   return (
     <Link
-      to={"/main/project"}
+      to={"/main/project/:id"}
       style={{ color: "inherit", textDecoration: "none" }}
     >
       <div className="current-project">

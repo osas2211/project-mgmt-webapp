@@ -45,12 +45,14 @@ export const projectifyApi = createApi({
     }),
     // Create project
     createProject: mutations.createProjectEndpoint(builder).createProject,
-    // Get Project
+    // Get Projects
     getProjects: queries.getProjectsEndpoint(builder).getProjects,
     //GET Project
     getProject: queries.getProjectEndpoint(builder).getProject,
     //Add Task
     addTask: mutations.addTaskEndpoint(builder).addTask,
+    //Get Tasks
+    getTasks: queries.getTasksEndpoint(builder).getTasks,
     // Add Collaborator
     addCollaborator: mutations.addCollaboratorEndpoint(builder).addCollaborator,
   }),
@@ -60,6 +62,7 @@ export const {
   useSignUpMutation,
   useGetUserSessionQuery,
   useAddTaskMutation,
+  useGetTasksQuery,
   useCreateProjectMutation,
   useGetProjectsQuery,
   useGetProjectQuery,

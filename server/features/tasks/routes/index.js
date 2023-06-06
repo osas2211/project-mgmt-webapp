@@ -1,7 +1,8 @@
 import { Router } from "express"
 const taskRouter = Router()
-import { createTask } from "../controllers/index.js"
+import { createTask, getTasks } from "../controllers/index.js"
 
 taskRouter.post("/addTask", createTask)
+taskRouter.get("/tasks", getTasks)
 
 export default taskRouter

@@ -13,6 +13,7 @@ import { AddTask } from "../components/AddTask"
 import {
   useGetProjectQuery,
   useGetUserSessionQuery,
+  useGetTasksQuery,
 } from "../redux/services/projectify"
 import { AddCollaborator } from "../components/AddCollaborator"
 
@@ -20,7 +21,9 @@ export const ProjectDetails = () => {
   const { id } = useParams()
   const { data, isLoading, error, refetch } = useGetProjectQuery({ id })
   const { data: userData } = useGetUserSessionQuery("")
-  console.log(data)
+  const { data: tasksData, error: err } = useGetTasksQuery({ id })
+  console.log(tasksData, err)
+
   const colors = ["gold", "green", "blue"]
   return (
     <div className="project page">
@@ -152,15 +155,19 @@ export const ProjectDetails = () => {
             )}
 
             <Row gutter={[16, 24]}>
+              {/* TODOs */}
               <Col xs={24} md={8}>
                 <h2>
                   <Tag color="blue" icon={<UnorderedListOutlined />}>
                     To Do
                   </Tag>
                 </h2>
-                <TaskCard />
-                <TaskCard />
-                <TaskCard />
+                {tasksData?.tasks
+                  .filter((task: any) => task.status === "uncompleted")
+                  .reverse()
+                  .map((task: any) => (
+                    <TaskCard {...task} key={task.$id} />
+                  ))}
               </Col>
               <Col xs={24} md={8}>
                 <h2>
@@ -168,8 +175,12 @@ export const ProjectDetails = () => {
                     In Progress
                   </Tag>
                 </h2>
-                <TaskCard />
-                <TaskCard />
+                {tasksData?.tasks
+                  .filter((task: any) => task.status === "in-progress")
+                  .reverse()
+                  .map((task: any) => (
+                    <TaskCard {...task} key={task.$id} />
+                  ))}
               </Col>
               <Col xs={24} md={8}>
                 <h2>
@@ -177,8 +188,12 @@ export const ProjectDetails = () => {
                     Completed
                   </Tag>
                 </h2>
-                <TaskCard />
-                <TaskCard />
+                {tasksData?.tasks
+                  .filter((task: any) => task.status === "completed")
+                  .reverse()
+                  .map((task: any) => (
+                    <TaskCard {...task} key={task.$id} />
+                  ))}
               </Col>
             </Row>
           </div>

@@ -45,4 +45,16 @@ export const queries = {
       }),
     }
   },
+  getTasksEndpoint: (build: buildType) => {
+    return {
+      getTasks: build.query({
+        query: (args: any) => ({
+          url: `/task/tasks?projectID=${args.id}`,
+          method: "GET",
+        }),
+        transformResponse: (response: { data: any }, meta, arg) =>
+          response.data,
+      }),
+    }
+  },
 }

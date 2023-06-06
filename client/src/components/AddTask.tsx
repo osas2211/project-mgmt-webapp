@@ -13,6 +13,7 @@ import {
 import React, { useState } from "react"
 import {
   useAddTaskMutation,
+  useGetTasksQuery,
   useGetUserSessionQuery,
 } from "../redux/services/projectify"
 import { openNotification } from "../utils/openNotification"
@@ -37,7 +38,7 @@ export const AddTask: React.FC<{ projectID: string; members: any[] }> = ({
   const { data: userData } = useGetUserSessionQuery("")
   const [addTask, { data: taskData, isLoading, isError, error }] =
     useAddTaskMutation()
-  // data?.$id
+  const { refetch } = useGetTasksQuery({ id: projectID })
 
   const addNewTask = async () => {
     // setIsModalOpen(false)
@@ -51,13 +52,14 @@ export const AddTask: React.FC<{ projectID: string; members: any[] }> = ({
         projectID,
         assigned_to,
       }).unwrap()
-      console.log(taskData)
+
       openNotification(
         "success",
         "Task Added",
         "Task successfully added to Project",
         api
       )
+      refetch()
     } catch (error) {
       console.log(error, taskData)
       openNotification("error", "Failed to Add Task", "Failed", api)
