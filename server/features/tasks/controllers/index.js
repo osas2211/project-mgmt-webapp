@@ -89,12 +89,28 @@ export const getUserTasks = async (req, res) => {
   }
 }
 
-export const updateTask = async (req, res) => {}
+// Update Task
+export const updateTask = async (req, res) => {
+  try {
+    const { id: taskID, ...rest } = req.body
+    const { id } = req.params
+    await db.updateDocument(
+      process.env.DATABASE_ID,
+      process.env.TASK_COLLECTION_ID,
+      id,
+      rest
+    )
+    return res
+      .status(200)
+      .json({ success: true, message: "Task updated successfully" })
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message })
+  }
+}
 export const deleteTask = async (req, res) => {
   // FOR ADMIN ONLY(assigned_by)
   try {
     const { id } = req.params
-    console.log(id)
 
     const task = await db.getDocument(
       process.env.DATABASE_ID,
