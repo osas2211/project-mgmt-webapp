@@ -19,6 +19,7 @@ import {
 import {
   useDeleteTaskMutation,
   useGetUserSessionQuery,
+  useGetUserTasksQuery,
   useUpdateTaskMutation,
 } from "../redux/services/projectify"
 
@@ -44,6 +45,8 @@ export const TaskCard: React.FC<{
   refetch,
 }) => {
   const { data } = useGetUserSessionQuery("")
+  const { refetch: refetchUserTasks } = useGetUserTasksQuery({ id: data?.$id })
+
   const [deleteTask, { error, data: deleteData, isLoading }] =
     useDeleteTaskMutation()
   const [updateTask, { error: updateError, isLoading: updateLoading }] =
@@ -95,8 +98,9 @@ export const TaskCard: React.FC<{
                         assigned_to: to,
                       }).unwrap()
                       message.success("Task Updated Successfully")
-                      await refetch()
+                      await refetchUserTasks()
                       setOpenEdit(() => false)
+                      await refetch()
                     } catch (error: any) {
                       message.error(error.message)
                     }
@@ -173,6 +177,7 @@ export const TaskCard: React.FC<{
                         message.success("Task Deleted Successfully")
                         await refetch()
                         setOpenDelete(() => false)
+                        await refetchUserTasks()
                       } catch (error: any) {
                         message.error(error.message)
                       }
