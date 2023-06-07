@@ -22,7 +22,12 @@ export const TaskCard: React.FC<{
             marginTop: "1rem",
           }}
         >
-          <p>Due: {due_date}</p>
+          <p>
+            Due:{" "}
+            <span style={{ color: "red", opacity: 0.7 }}>
+              {new Date(due_date).toDateString()}
+            </span>
+          </p>
           <div>
             <p>
               Assigned to: <Tag color="processing">{assigned_to}</Tag>

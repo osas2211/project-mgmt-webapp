@@ -71,9 +71,13 @@ export const Projects = () => {
                       <span style={{ backgroundColor: "#1c93e1" }} /> In
                       Progress
                     </h2>
-                    {/* {data2.reverse().map((datum, key) => (
-              <ProjectCard {...datum} key={key} />
-            ))} */}
+                    {projectData?.projects
+                      .filter(
+                        (project: any) => project.status === "in-progress"
+                      )
+                      .map((datum: any, key: any) => (
+                        <ProjectCard {...datum} key={datum.$id} />
+                      ))}
                   </Col>
 
                   {/* COMPLETED PROJECTS */}
@@ -82,9 +86,11 @@ export const Projects = () => {
                       <span style={{ backgroundColor: "#9BC53D" }} /> Completed
                       Projects
                     </h2>
-                    {/* {data3.map((datum, key) => (
-              <ProjectCard {...datum} key={key} />
-            ))} */}
+                    {projectData?.projects
+                      .filter((project: any) => project.status === "completed")
+                      .map((datum: any, key: any) => (
+                        <ProjectCard {...datum} key={datum.$id} />
+                      ))}
                   </Col>
                 </Row>
               </div>

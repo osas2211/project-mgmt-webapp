@@ -9,27 +9,39 @@ import {
 import { Col, Row } from "antd"
 import { Icon } from "@mui/material"
 import { Column, Liquid } from "@ant-design/plots"
-
-const data = [
-  {
-    type: "Total Tasks",
-    value: 34,
-  },
-  {
-    type: "Completed Tasks",
-    value: 12,
-  },
-  {
-    type: "Pending Tasks",
-    value: 8,
-  },
-  {
-    type: "Uncompleted Tasks",
-    value: 14,
-  },
-]
+import {
+  useGetUserSessionQuery,
+  useGetUserTasksQuery,
+} from "../redux/services/projectify"
 
 export const TasksSummary = () => {
+  const { data: userData } = useGetUserSessionQuery("")
+  const { data: tasksData } = useGetUserTasksQuery({ id: userData?.$id })
+  console.log(tasksData?.tasks)
+  const data = [
+    {
+      type: "Total Tasks",
+      value: tasksData?.tasks?.length,
+    },
+    {
+      type: "Completed Tasks",
+      value: tasksData?.tasks.filter(
+        (task: any) => task?.status === "completed"
+      )?.length,
+    },
+    {
+      type: "InProgress Tasks",
+      value: tasksData?.tasks.filter(
+        (task: any) => task?.status === "in-progress"
+      )?.length,
+    },
+    {
+      type: "Uncompleted Tasks",
+      value: tasksData?.tasks.filter(
+        (task: any) => task?.status === "uncompleted"
+      )?.length,
+    },
+  ]
   const config = {
     data,
     xField: "type",
@@ -57,6 +69,7 @@ export const TasksSummary = () => {
       },
     },
   }
+
   return (
     <div className="user-tasks">
       <h3>
@@ -87,7 +100,7 @@ export const TasksSummary = () => {
           </span>
           <div>
             <h4>Total Tasks</h4>
-            <h3>34</h3>
+            <h3>{tasksData?.tasks.length}</h3>
           </div>
           <Icon
             component={RadioButtonCheckedOutlined}
@@ -124,7 +137,13 @@ export const TasksSummary = () => {
           </span>
           <div>
             <h4>Completed Tasks</h4>
-            <h3>12</h3>
+            <h3>
+              {
+                tasksData?.tasks.filter(
+                  (task: any) => task?.status === "completed"
+                )?.length
+              }
+            </h3>
           </div>
           <Icon
             component={RadioButtonCheckedOutlined}
@@ -160,8 +179,14 @@ export const TasksSummary = () => {
             />
           </span>
           <div>
-            <h4>Pending Tasks</h4>
-            <h3>8</h3>
+            <h4>In-Progress Tasks</h4>
+            <h3>
+              {
+                tasksData?.tasks.filter(
+                  (task: any) => task?.status === "in-progress"
+                )?.length
+              }
+            </h3>
           </div>
           <Icon
             component={RadioButtonCheckedOutlined}
@@ -198,7 +223,13 @@ export const TasksSummary = () => {
           </span>
           <div>
             <h4>Uncompleted Tasks</h4>
-            <h3>14</h3>
+            <h3>
+              {
+                tasksData?.tasks.filter(
+                  (task: any) => task?.status === "uncompleted"
+                )?.length
+              }
+            </h3>
           </div>
           <Icon
             component={RadioButtonCheckedOutlined}

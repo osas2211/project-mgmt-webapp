@@ -22,7 +22,6 @@ export const ProjectDetails = () => {
   const { data, isLoading, error, refetch } = useGetProjectQuery({ id })
   const { data: userData } = useGetUserSessionQuery("")
   const { data: tasksData, error: err } = useGetTasksQuery({ id })
-  console.log(tasksData, err)
 
   const colors = ["gold", "green", "blue"]
   return (
@@ -82,7 +81,7 @@ export const ProjectDetails = () => {
                   <p>End Date</p>
                 </Col>
                 <Col xs={16} md={12}>
-                  <span>{data?.project.end_date}</span>
+                  <span>{new Date(data?.project.end_date).toDateString()}</span>
                 </Col>
               </Row>
             </div>

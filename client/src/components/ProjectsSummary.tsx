@@ -2,15 +2,21 @@ import React from "react"
 import CallMadeIcon from "@mui/icons-material/CallMade"
 import { Icon } from "@mui/material"
 import { Link } from "react-router-dom"
-import projectImg from "../assets/project.jpg"
-import projectImg2 from "../assets/user.png"
-import projectImg3 from "../assets/appwrite.svg"
-import projectImg4 from "../assets/work_.svg"
-import projectImg5 from "../assets/target.svg"
-import user from "../assets/user.jpg"
-import { Progress } from "antd"
+import { Progress, Skeleton } from "antd"
+import {
+  useGetProjectQuery,
+  useGetProjectsQuery,
+  useGetTasksQuery,
+  useGetUserSessionQuery,
+} from "../redux/services/projectify"
 
 export const ProjectsSummary = () => {
+  const { data: userData } = useGetUserSessionQuery("")
+  const { data } = useGetProjectsQuery({ jwt: userData?.jwt })
+  const todo = data?.projects.filter(
+    (project: any) => project.status === "uncompleted"
+  )
+
   return (
     <div className="user-projects">
       <h3>
@@ -26,7 +32,7 @@ export const ProjectsSummary = () => {
         >
           <div>
             <h4>Active Projects</h4>
-            <h2>7</h2>
+            <h2>{todo?.length}</h2>
           </div>
           <Link
             to="/main/projects"
@@ -46,57 +52,58 @@ export const ProjectsSummary = () => {
         </div>
 
         <div className="current-projects">
-          <CurrentProject
-            progress={35}
-            projectImg={projectImg3}
-            title="Appwrite X Hashnode Hackathon"
-          />
-          <CurrentProject
-            progress={95}
-            projectImg={projectImg4}
-            title="Final Year Project"
-          />
-
-          <CurrentProject
-            progress={15}
-            projectImg={projectImg5}
-            title="Video Conferencing App"
-          />
-          <CurrentProject
-            progress={75}
-            projectImg={projectImg}
-            title="The AI Project"
-          />
+          {data?.projects
+            .filter((project: any) => project.status !== "completed")
+            .map((project: any) => (
+              <CurrentProject projectID={project.$id} key={project.$id} />
+            ))}
         </div>
       </div>
     </div>
   )
 }
 
-export const CurrentProject: React.FC<{
-  projectImg: string
-  progress: string | number
-  title: string
-}> = ({ projectImg, progress, title }) => {
-  return (
+export const CurrentProject: React.FC<{ projectID: string }> = ({
+  projectID,
+}) => {
+  const { data: tasksData } = useGetTasksQuery({ id: projectID })
+  const { data: projectData, isLoading } = useGetProjectQuery({ id: projectID })
+  const todo = tasksData?.tasks.filter(
+    (task: any) => task.status === "uncompleted"
+  )
+  const inProgress = tasksData?.tasks.filter(
+    (task: any) => task.status === "in-progress"
+  )
+  const completed = tasksData?.tasks.filter(
+    (task: any) => task.status === "completed"
+  )
+  const total = todo?.length + inProgress?.length + completed?.length
+
+  return isLoading ? (
+    <Skeleton active />
+  ) : (
     <Link
-      to={"/main/project/:id"}
+      to={`/main/project/${projectID}`}
       style={{ color: "inherit", textDecoration: "none" }}
     >
       <div className="current-project">
-        <img src={projectImg} alt="Project overview" />
+        <img src={projectData?.project.project_cover} alt="Project overview" />
         <div className="current-project-progress">
-          <h3>{title}</h3>
+          <h3>{projectData?.project.title}</h3>
           <Progress
-            percent={progress as number}
+            percent={
+              tasksData?.tasks?.length === 0
+                ? 0
+                : (Math.floor((completed?.length / total) * 100) as number)
+            }
             strokeColor={{ "10%": "#1c93e1", "100%": "#87d068" }}
             size={"small"}
           />
         </div>
         <div className="current-project-icons">
-          <img src={projectImg2} alt="A Contributor" />
-          <img src={user} alt="A Contributor" />
-          <img src={projectImg2} alt="A Contributor" />
+          {projectData?.members_img.map((url: string) => (
+            <img src={url} alt="A Contributor" />
+          ))}
         </div>
       </div>
     </Link>

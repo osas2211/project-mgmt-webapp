@@ -12,8 +12,14 @@ import {
 import { Icon } from "@mui/material"
 import { Button, Progress } from "antd"
 import { Logout } from "./Logout"
+import {
+  useGetProjectsQuery,
+  useGetUserSessionQuery,
+} from "../redux/services/projectify"
 
 export const Navigator = () => {
+  const { data: userData } = useGetUserSessionQuery("")
+  const { data } = useGetProjectsQuery({ jwt: userData?.jwt })
   const { pathname } = useLocation()
   return (
     <aside className="nav-bar">
@@ -107,9 +113,26 @@ export const Navigator = () => {
           }}
         >
           <small>Projects</small>
-          <small>7/10</small>
+          <small>
+            {
+              data?.projects.filter(
+                (project: any) => project?.status === "completed"
+              )?.length
+            }
+            /{data?.projects?.length}
+          </small>
         </div>
-        <Progress percent={70} status="active" style={{ padding: "0 1rem" }} />
+        <Progress
+          percent={Math.round(
+            (data?.projects.filter(
+              (project: any) => project?.status === "completed"
+            )?.length /
+              data?.projects?.length) *
+              100
+          )}
+          status="active"
+          style={{ padding: "0 1rem" }}
+        />
         <Button
           type="dashed"
           style={{ width: "90%", margin: "auto", display: "block" }}
