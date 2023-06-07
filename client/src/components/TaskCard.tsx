@@ -1,7 +1,25 @@
-import { Avatar, Button, Card, Tag, Modal, Input, Select, Row, Col } from "antd"
+import {
+  Avatar,
+  Button,
+  Card,
+  Tag,
+  Modal,
+  Input,
+  Select,
+  Row,
+  Col,
+  message,
+} from "antd"
 import React, { useState } from "react"
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons"
-import { useGetUserSessionQuery } from "../redux/services/projectify"
+import {
+  EditOutlined,
+  DeleteOutlined,
+  LoadingOutlined,
+} from "@ant-design/icons"
+import {
+  useDeleteTaskMutation,
+  useGetUserSessionQuery,
+} from "../redux/services/projectify"
 
 export const TaskCard: React.FC<{
   title: string
@@ -11,6 +29,8 @@ export const TaskCard: React.FC<{
   assigned_by: string
   status: string
   members: { label: string; value: string }[]
+  $id: string
+  refetch: any
 }> = ({
   title,
   description,
@@ -19,13 +39,19 @@ export const TaskCard: React.FC<{
   assigned_by,
   status,
   members,
+  $id,
+  refetch,
 }) => {
   const { data } = useGetUserSessionQuery("")
+  const [deleteTask, { error, data: deleteData, isLoading }] =
+    useDeleteTaskMutation()
   const [openEdit, setOpenEdit] = useState(false)
+  const [openDelete, setOpenDelete] = useState(false)
   const [title_, setTitle] = useState(title)
   const [desc, setDesc] = useState(description)
   const [to, setTo] = useState(assigned_to)
   const [status_, setStatus] = useState(status)
+  console.log(deleteData)
 
   return (
     <div className="task-card">
@@ -89,7 +115,7 @@ export const TaskCard: React.FC<{
                       <Select
                         defaultValue={status_}
                         style={{ width: "100%" }}
-                        onChange={(value) => setTo(value)}
+                        onChange={(value) => setStatus(value)}
                         options={[
                           { value: "completed", label: "Completed" },
                           { value: "in-progress", label: "In Progress" },
@@ -100,12 +126,35 @@ export const TaskCard: React.FC<{
                   </Row>
                 </Modal>
               </>
-              <Button
-                shape="circle"
-                icon={<DeleteOutlined />}
-                type="dashed"
-                style={{ marginLeft: "0.5rem", color: "red" }}
-              />
+              {data?.$id === assigned_by ? (
+                <>
+                  <Button
+                    shape="circle"
+                    icon={<DeleteOutlined />}
+                    type="dashed"
+                    style={{ marginLeft: "0.5rem", color: "red" }}
+                    onClick={() => setOpenDelete(true)}
+                  />
+                  <Modal
+                    title="Delete Task?"
+                    onCancel={() => setOpenDelete(false)}
+                    open={openDelete}
+                    okButtonProps={{ style: { background: "red" } }}
+                    okText={isLoading ? <LoadingOutlined /> : "Delete Task"}
+                    onOk={async () => {
+                      try {
+                        await deleteTask($id)
+                        message.success("Task Deleted Successfully")
+                        await refetch()
+                      } catch (error: any) {
+                        message.error(error.message)
+                      }
+                    }}
+                  />
+                </>
+              ) : (
+                <></>
+              )}
             </div>
           ) : (
             <></>

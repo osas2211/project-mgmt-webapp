@@ -48,7 +48,6 @@ export const mutations = {
         body: body,
         method: "POST",
       }),
-
       // // Pick out data and prevent nested properties in a hook or selector
       // transformResponse: (response: { data: User }, meta, arg) => response.data,
 
@@ -60,6 +59,14 @@ export const mutations = {
       //   meta,
       //   arg
       // ) => response.data.message,
+    }),
+  }),
+  deleteTaskEndpoint: (build: buildType) => ({
+    deleteTask: build.mutation({
+      query: (id: string) => ({
+        url: `/task/delete/${id}`,
+        method: "DELETE",
+      }),
     }),
   }),
   createProjectEndpoint: (build: buildType) => ({

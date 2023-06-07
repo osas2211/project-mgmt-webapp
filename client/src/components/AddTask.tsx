@@ -1,4 +1,4 @@
-import { PlusCircleFilled } from "@ant-design/icons"
+import { LoadingOutlined, PlusCircleFilled } from "@ant-design/icons"
 import {
   Button,
   Modal,
@@ -51,6 +51,7 @@ export const AddTask: React.FC<{ projectID: string; members: any[] }> = ({
         jwt: userData?.jwt,
         projectID,
         assigned_to,
+        project: projectID,
       }).unwrap()
 
       openNotification(
@@ -77,21 +78,24 @@ export const AddTask: React.FC<{ projectID: string; members: any[] }> = ({
         icon={<PlusCircleFilled />}
         type={"primary"}
         style={{ margin: "1rem 0" }}
+        disabled={isLoading ? true : false}
       >
-        Add Task
+        {isLoading ? <LoadingOutlined /> : "Add Task"}
       </Button>
       <Modal
         title="Add New Task to this Project"
-        okText="Add Task"
+        okText={isLoading ? <LoadingOutlined /> : "Add Task"}
         open={isModalOpen}
         onOk={addNewTask}
         onCancel={handleCancel}
+        okButtonProps={{ disabled: isLoading ? true : false }}
       >
         <Row gutter={[16, 24]}>
           <Col span={24}>
             <Input
               placeholder="Title"
               onChange={(e) => setTitle(e.target.value)}
+              disabled={isLoading ? true : false}
             />
           </Col>
           <Col span={24}>
@@ -101,6 +105,7 @@ export const AddTask: React.FC<{ projectID: string; members: any[] }> = ({
               style={{ minHeight: 100, marginBottom: 24 }}
               placeholder="Description"
               onChange={(e) => setDesc(e.target.value)}
+              disabled={isLoading ? true : false}
             />
           </Col>
           <Col span={24}>
@@ -110,10 +115,15 @@ export const AddTask: React.FC<{ projectID: string; members: any[] }> = ({
               style={{ width: "100%" }}
               onChange={(value) => setAssignedTo(value)}
               options={members}
+              disabled={isLoading ? true : false}
             />
           </Col>
           <Col span={24}>
-            <DatePicker placeholder="Due Date" onChange={onChangeDate} />
+            <DatePicker
+              placeholder="Due Date"
+              onChange={onChangeDate}
+              disabled={isLoading ? true : false}
+            />
           </Col>
         </Row>
       </Modal>

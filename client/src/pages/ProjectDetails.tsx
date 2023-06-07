@@ -21,7 +21,11 @@ export const ProjectDetails = () => {
   const { id } = useParams()
   const { data, isLoading, error, refetch } = useGetProjectQuery({ id })
   const { data: userData } = useGetUserSessionQuery("")
-  const { data: tasksData, error: err } = useGetTasksQuery({ id })
+  const {
+    data: tasksData,
+    error: err,
+    refetch: refetchTask,
+  } = useGetTasksQuery({ id })
 
   const colors = ["gold", "green", "blue"]
   return (
@@ -173,6 +177,7 @@ export const ProjectDetails = () => {
                         }
                       )}
                       key={task.$id}
+                      refetch={refetchTask}
                     />
                   ))}
               </Col>
@@ -194,6 +199,7 @@ export const ProjectDetails = () => {
                         }
                       )}
                       key={task.$id}
+                      refetch={refetchTask}
                     />
                   ))}
               </Col>
@@ -215,6 +221,7 @@ export const ProjectDetails = () => {
                         }
                       )}
                       key={task.$id}
+                      refetch={refetchTask}
                     />
                   ))}
               </Col>
