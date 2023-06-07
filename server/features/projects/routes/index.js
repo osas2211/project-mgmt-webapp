@@ -12,6 +12,6 @@ projectRouter.post("/createProject", createProject)
 projectRouter.post("/addCollaborator", addCollaborator)
 projectRouter.get("/projects", getProjects)
 projectRouter.get("/:id", getProject)
-projectRouter.post("/del", delA)
+// projectRouter.post("/del", delA)
 
 export default projectRouter

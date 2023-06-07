@@ -143,28 +143,28 @@ export const addCollaborator = async (req, res, next) => {
 
 export const delA = async (req, res, next) => {
   try {
-    // const docs = await db.listDocuments(
-    //   process.env.DATABASE_ID,
-    //   process.env.PROJECT_COLLECTION_ID
-    // )
-    // const ids = docs.documents.map((doc) => doc.$id)
-    // console.log(ids)
-    // ids.forEach(
-    //   async (id) =>
-    //     await db.deleteDocument(
-    //       process.env.DATABASE_ID,
-    //       process.env.PROJECT_COLLECTION_ID,
-    //       id
-    //     )
-    // )
-
-    const teams_ = await teams.list()
-    const ids = teams_.teams.map((team) => team.$id)
-    ids.forEach(async (id) => await teams.delete(id))
+    const docs = await db.listDocuments(
+      process.env.DATABASE_ID,
+      process.env.PROJECT_COLLECTION_ID
+    )
+    const ids = docs.documents.map((doc) => doc.$id)
     console.log(ids)
-    return res.status(200).json({
-      success: true,
-    })
+    ids.forEach(
+      async (id) =>
+        await db.deleteDocument(
+          process.env.DATABASE_ID,
+          process.env.PROJECT_COLLECTION_ID,
+          id
+        )
+    )
+
+    // const teams_ = await teams.list()
+    // const ids = teams_.teams.map((team) => team.$id)
+    // ids.forEach(async (id) => await teams.delete(id))
+    // console.log(ids)
+    // return res.status(200).json({
+    //   success: true,
+    // })
 
     return res.status(200).json({
       success: true,
