@@ -165,7 +165,15 @@ export const ProjectDetails = () => {
                   .filter((task: any) => task.status === "uncompleted")
                   .reverse()
                   .map((task: any) => (
-                    <TaskCard {...task} key={task.$id} />
+                    <TaskCard
+                      {...task}
+                      members={data?.members.map(
+                        (member: { id: string; name: string }) => {
+                          return { value: member.id, label: member.name }
+                        }
+                      )}
+                      key={task.$id}
+                    />
                   ))}
               </Col>
               <Col xs={24} md={8}>
@@ -178,7 +186,15 @@ export const ProjectDetails = () => {
                   .filter((task: any) => task.status === "in-progress")
                   .reverse()
                   .map((task: any) => (
-                    <TaskCard {...task} key={task.$id} />
+                    <TaskCard
+                      {...task}
+                      members={data?.members.map(
+                        (member: { id: string; name: string }) => {
+                          return { value: member.id, label: member.name }
+                        }
+                      )}
+                      key={task.$id}
+                    />
                   ))}
               </Col>
               <Col xs={24} md={8}>
@@ -191,7 +207,15 @@ export const ProjectDetails = () => {
                   .filter((task: any) => task.status === "completed")
                   .reverse()
                   .map((task: any) => (
-                    <TaskCard {...task} key={task.$id} />
+                    <TaskCard
+                      {...task}
+                      members={data?.members.map(
+                        (member: { id: string; name: string }) => {
+                          return { value: member.id, label: member.name }
+                        }
+                      )}
+                      key={task.$id}
+                    />
                   ))}
               </Col>
             </Row>

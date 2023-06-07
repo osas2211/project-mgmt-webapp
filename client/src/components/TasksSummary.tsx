@@ -17,7 +17,6 @@ import {
 export const TasksSummary = () => {
   const { data: userData } = useGetUserSessionQuery("")
   const { data: tasksData } = useGetUserTasksQuery({ id: userData?.$id })
-  console.log(tasksData?.tasks)
   const data = [
     {
       type: "Total Tasks",
