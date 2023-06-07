@@ -19,6 +19,7 @@ import {
 import {
   useDeleteTaskMutation,
   useGetUserSessionQuery,
+  useUpdateTaskMutation,
 } from "../redux/services/projectify"
 
 export const TaskCard: React.FC<{
@@ -45,13 +46,16 @@ export const TaskCard: React.FC<{
   const { data } = useGetUserSessionQuery("")
   const [deleteTask, { error, data: deleteData, isLoading }] =
     useDeleteTaskMutation()
+  const [updateTask, { error: updateError, isLoading: updateLoading }] =
+    useUpdateTaskMutation()
+  console.log(updateError)
+
   const [openEdit, setOpenEdit] = useState(false)
   const [openDelete, setOpenDelete] = useState(false)
   const [title_, setTitle] = useState(title)
   const [desc, setDesc] = useState(description)
   const [to, setTo] = useState(assigned_to)
   const [status_, setStatus] = useState(status)
-  console.log(deleteData)
 
   return (
     <div className="task-card">
@@ -73,12 +77,30 @@ export const TaskCard: React.FC<{
                   icon={<EditOutlined />}
                   type="dashed"
                   onClick={() => setOpenEdit(true)}
+                  disabled={updateLoading ? true : false}
                 />
                 <Modal
-                  okText="Edit Task"
                   open={openEdit}
                   onCancel={() => setOpenEdit(false)}
                   title={"Edit Task"}
+                  // okButtonProps={{ style: { background: "red" } }}
+                  okText={updateLoading ? <LoadingOutlined /> : "Edit Task"}
+                  onOk={async () => {
+                    try {
+                      await updateTask({
+                        id: $id,
+                        title: title_,
+                        description: desc,
+                        status: status_,
+                        assigned_to: to,
+                      }).unwrap()
+                      message.success("Task Updated Successfully")
+                      await refetch()
+                      setOpenEdit(() => false)
+                    } catch (error: any) {
+                      message.error(error.message)
+                    }
+                  }}
                 >
                   <Row gutter={[16, 24]}>
                     {data?.$id === assigned_by ? (
@@ -88,6 +110,7 @@ export const TaskCard: React.FC<{
                             value={title_}
                             onChange={(e) => setTitle(e.target.value)}
                             placeholder="title"
+                            disabled={updateLoading ? true : false}
                           />
                         </Col>
                         <Col span={24}>
@@ -95,6 +118,7 @@ export const TaskCard: React.FC<{
                             value={desc}
                             onChange={(e) => setDesc(e.target.value)}
                             placeholder="Description"
+                            disabled={updateLoading ? true : false}
                           />
                         </Col>
                         <Col span={24}>
@@ -104,6 +128,7 @@ export const TaskCard: React.FC<{
                             style={{ width: "100%" }}
                             onChange={(value) => setTo(value)}
                             options={members}
+                            disabled={updateLoading ? true : false}
                           />
                         </Col>
                       </>
@@ -121,6 +146,7 @@ export const TaskCard: React.FC<{
                           { value: "in-progress", label: "In Progress" },
                           { value: "uncompleted", label: "Not Completed" },
                         ]}
+                        disabled={updateLoading ? true : false}
                       />
                     </Col>
                   </Row>
@@ -146,6 +172,7 @@ export const TaskCard: React.FC<{
                         await deleteTask($id)
                         message.success("Task Deleted Successfully")
                         await refetch()
+                        setOpenDelete(() => false)
                       } catch (error: any) {
                         message.error(error.message)
                       }

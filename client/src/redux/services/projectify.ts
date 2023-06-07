@@ -55,6 +55,8 @@ export const projectifyApi = createApi({
     getTasks: queries.getTasksEndpoint(builder).getTasks,
     //Get User Tasks
     getUserTasks: queries.getUserTasksEndpoint(builder).getUserTasks,
+    //Update Tak
+    updateTask: mutations.updateTaskEndpoint(builder).updateTask,
     //Delete Task
     deleteTask: mutations.deleteTaskEndpoint(builder).deleteTask,
     // Add Collaborator
@@ -68,6 +70,7 @@ export const {
   useAddTaskMutation,
   useGetTasksQuery,
   useGetUserTasksQuery,
+  useUpdateTaskMutation,
   useDeleteTaskMutation,
   useCreateProjectMutation,
   useGetProjectsQuery,

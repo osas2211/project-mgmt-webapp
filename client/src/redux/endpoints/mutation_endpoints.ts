@@ -61,6 +61,16 @@ export const mutations = {
       // ) => response.data.message,
     }),
   }),
+
+  updateTaskEndpoint: (build: buildType) => ({
+    updateTask: build.mutation({
+      query: (body: any) => ({
+        url: `/task/update/${body.id}`,
+        body,
+        method: "POST",
+      }),
+    }),
+  }),
   deleteTaskEndpoint: (build: buildType) => ({
     deleteTask: build.mutation({
       query: (id: string) => ({
