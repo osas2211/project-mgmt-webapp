@@ -73,7 +73,7 @@ export const Projects = () => {
                     </h2>
                     {projectData?.projects
                       .filter(
-                        (project: any) => project.status === "in-progress"
+                        (project: any) => project.status === "in_progress"
                       )
                       .map((datum: any, key: any) => (
                         <ProjectCard {...datum} key={datum.$id} />

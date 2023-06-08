@@ -67,7 +67,7 @@ export const mutations = {
       query: (body: any) => ({
         url: `/task/update/${body.id}`,
         body,
-        method: "POST",
+        method: "PATCH",
       }),
     }),
   }),
@@ -85,6 +85,29 @@ export const mutations = {
         url: "/project/createProject",
         body,
         method: "POST",
+      }),
+    }),
+  }),
+  updateProjectEndpoint: (build: buildType) => ({
+    updateProject: build.mutation({
+      query: (body: {
+        id: string
+        priority: string
+        description: string
+        title: string
+        status: string
+      }) => ({
+        url: `/project/${body.id}`,
+        body,
+        method: "PATCH",
+      }),
+    }),
+  }),
+  deleteProjectEndpoint: (build: buildType) => ({
+    deleteProject: build.mutation({
+      query: (id) => ({
+        url: `/project/${id}`,
+        method: "DELETE",
       }),
     }),
   }),

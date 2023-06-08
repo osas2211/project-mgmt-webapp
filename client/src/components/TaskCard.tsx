@@ -51,7 +51,6 @@ export const TaskCard: React.FC<{
     useDeleteTaskMutation()
   const [updateTask, { error: updateError, isLoading: updateLoading }] =
     useUpdateTaskMutation()
-  console.log(updateError)
 
   const [openEdit, setOpenEdit] = useState(false)
   const [openDelete, setOpenDelete] = useState(false)

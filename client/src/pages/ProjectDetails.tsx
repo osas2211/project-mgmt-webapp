@@ -16,6 +16,7 @@ import {
   useGetTasksQuery,
 } from "../redux/services/projectify"
 import { AddCollaborator } from "../components/AddCollaborator"
+import { MutateProject } from "../components/MutateProject"
 
 export const ProjectDetails = () => {
   const { id } = useParams()
@@ -51,12 +52,31 @@ export const ProjectDetails = () => {
               alignItems: "center",
             }}
           >
-            <h1 className="project-title">{data?.project.title}</h1>
-            <Link to={"/main/chats"}>
-              <Button type="dashed" icon={<WechatOutlined />}>
-                Chat
-              </Button>
-            </Link>
+            <div>
+              <h1 className="project-title">
+                {data?.project.title}{" "}
+                <Link to={"/main/chats"}>
+                  <Button type="dashed" icon={<WechatOutlined />}>
+                    Chat
+                  </Button>
+                </Link>
+              </h1>
+            </div>
+
+            <div>
+              {userData?.$id === data?.project.manager ? (
+                <MutateProject
+                  refetch={refetch}
+                  $id={id as string}
+                  title={data?.project.title}
+                  description={data?.project.description}
+                  priority={data?.project.priority}
+                  status={data?.project.status}
+                />
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
           <div className="project-meta-data">
             <div className="priority">
@@ -157,7 +177,7 @@ export const ProjectDetails = () => {
               <></>
             )}
 
-            <Row gutter={[16, 24]}>
+            <Row gutter={[16, 24]} style={{ marginTop: 16 }}>
               {/* TODOs */}
               <Col xs={24} md={8}>
                 <h2>

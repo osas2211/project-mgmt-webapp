@@ -2,7 +2,7 @@ import React from "react"
 import CallMadeIcon from "@mui/icons-material/CallMade"
 import { Icon } from "@mui/material"
 import { Link } from "react-router-dom"
-import { Progress, Skeleton } from "antd"
+import { Avatar, Progress, Skeleton } from "antd"
 import {
   useGetProjectQuery,
   useGetProjectsQuery,
@@ -14,7 +14,8 @@ export const ProjectsSummary = () => {
   const { data: userData } = useGetUserSessionQuery("")
   const { data } = useGetProjectsQuery({ jwt: userData?.jwt })
   const todo = data?.projects.filter(
-    (project: any) => project.status === "uncompleted"
+    (project: any) =>
+      project.status === "uncompleted" || project.status === "in_progress"
   )
 
   return (
@@ -101,9 +102,17 @@ export const CurrentProject: React.FC<{ projectID: string }> = ({
           />
         </div>
         <div className="current-project-icons">
-          {projectData?.members_img.map((url: string) => (
-            <img src={url} alt="A Contributor" />
-          ))}
+          <Avatar.Group
+            maxCount={2}
+            maxPopoverTrigger="hover"
+            maxStyle={{ cursor: "pointer" }}
+          >
+            {projectData?.members_img.map((url: string, key: number) => (
+              <Avatar key={key} src={url}>
+                A Contributor
+              </Avatar>
+            ))}
+          </Avatar.Group>
         </div>
       </div>
     </Link>

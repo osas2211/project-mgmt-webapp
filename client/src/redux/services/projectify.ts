@@ -49,6 +49,10 @@ export const projectifyApi = createApi({
     getProjects: queries.getProjectsEndpoint(builder).getProjects,
     //GET Project
     getProject: queries.getProjectEndpoint(builder).getProject,
+    //Update Project
+    updateProject: mutations.updateProjectEndpoint(builder).updateProject,
+    //Delete Project
+    deleteProject: mutations.deleteProjectEndpoint(builder).deleteProject,
     //Add Task
     addTask: mutations.addTaskEndpoint(builder).addTask,
     //Get Tasks
@@ -75,5 +79,7 @@ export const {
   useCreateProjectMutation,
   useGetProjectsQuery,
   useGetProjectQuery,
+  useDeleteProjectMutation,
+  useUpdateProjectMutation,
   useAddCollaboratorMutation,
 } = projectifyApi

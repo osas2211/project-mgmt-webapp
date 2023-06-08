@@ -77,7 +77,6 @@ export const AddTask: React.FC<{ projectID: string; members: any[] }> = ({
         onClick={showModal}
         icon={<PlusCircleFilled />}
         type={"primary"}
-        style={{ margin: "1rem 0" }}
         disabled={isLoading ? true : false}
       >
         {isLoading ? <LoadingOutlined /> : "Add Task"}
