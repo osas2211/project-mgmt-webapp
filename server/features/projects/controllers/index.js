@@ -141,6 +141,63 @@ export const addCollaborator = async (req, res, next) => {
   }
 }
 
+export const updateProject = async (req, res) => {
+  try {
+    const { id } = req.params
+    const { title, id: $id, ...rest } = req.body
+    // Update Project
+    await db.updateDocument(
+      process.env.DATABASE_ID,
+      process.env.PROJECT_COLLECTION_ID,
+      id,
+      { title, ...rest }
+    )
+    // Update Team Name
+    await teams.updateName(id, title)
+    return res.status(200).json({
+      success: true,
+      message: "Project Updated Successfully",
+    })
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message })
+  }
+}
+
+export const deleteProject = async (req, res) => {
+  try {
+    const { id } = req.params
+    const project = await db.getDocument(
+      process.env.DATABASE_ID,
+      process.env.PROJECT_COLLECTION_ID,
+      id
+    )
+    const tasks = project.tasks
+    // DELETE TEAM
+    await teams.delete(id)
+    // DELETE PR0JECT
+    await db.deleteDocument(
+      process.env.DATABASE_ID,
+      process.env.PROJECT_COLLECTION_ID,
+      id
+    )
+    // DELETE TASKS IN PROJECT
+    tasks.forEach(
+      async (id) =>
+        await db.deleteDocument(
+          process.env.DATABASE_ID,
+          process.env.TASK_COLLECTION_ID,
+          id
+        )
+    )
+    return res.status(200).json({
+      success: true,
+      message: "Project Deleted Successfully",
+    })
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message })
+  }
+}
+
 export const delA = async (req, res, next) => {
   try {
     const docs = await db.listDocuments(

@@ -12,6 +12,6 @@ taskRouter.post("/addTask", createTask)
 taskRouter.get("/tasks", getTasks)
 taskRouter.get("/userTasks", getUserTasks)
 taskRouter.delete("/delete/:id", deleteTask)
-taskRouter.post("/update/:id", updateTask)
+taskRouter.patch("/update/:id", updateTask)
 
 export default taskRouter
