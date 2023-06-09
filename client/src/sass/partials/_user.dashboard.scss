@@ -1,5 +1,7 @@
 .user-dashboard {
-  background-color: #232222 !important;
+  // background-color: #232222 !important;
+  background-color: #fbfbfb !important;
+
   &-top {
     display: flex;
     justify-content: space-between;
@@ -33,10 +35,12 @@
       &4 {
         display: flex;
         padding: 1rem 0rem;
-        background-color: $dark_color;
+        // background-color: $dark_color;
         border-radius: 8px;
-        box-shadow: 1px 4px 8px #58585839;
+        // box-shadow: 1px 4px 8px #58585839;
         margin-left: 1rem;
+        background-color: #fff;
+        box-shadow: 1px 4px 8px #77777739;
         h4 {
           font-weight: bolder;
           font-size: 1rem;
@@ -62,11 +66,13 @@
       font-size: 1.1rem;
     }
     .user-projects-summary {
-      background-color: $dark_color;
+      // background-color: $dark_color;
       border-radius: 8px;
-      box-shadow: 1px 4px 8px #58585839;
+      // box-shadow: 1px 4px 8px #58585839;
       padding: 1.5rem;
       margin: 1.5rem 1rem;
+      background-color: #fff;
+      box-shadow: 1px 4px 8px #77777739;
     }
     .current-projects {
       margin: 1rem 0;
@@ -105,11 +111,13 @@
       }
     }
     .upcomings {
-      background-color: $dark_color;
+      // background-color: $dark_color;
       border-radius: 8px;
-      box-shadow: 1px 4px 8px #58585839;
+      // box-shadow: 1px 4px 8px #58585839;
       padding: 1.5rem;
       margin: 1.5rem 1rem;
+      background-color: #fff;
+      box-shadow: 1px 4px 8px #77777739;
       h3 {
         // font-family: "Inter";
         font-size: 1.1rem;
@@ -136,34 +144,34 @@
   }
 }
 
-@media (prefers-color-scheme: light) {
-  .user-dashboard {
-    background-color: #fbfbfb !important;
-    .user-tasks {
-      .user-tasks-summary {
-        &1,
-        &2,
-        &3,
-        &4 {
-          background-color: #fff;
-          box-shadow: 1px 4px 8px #77777739;
-        }
-      }
-    }
-    .user-projects {
-      .user-projects-summary {
-        background-color: #fff;
-        box-shadow: 1px 4px 8px #77777739;
-      }
-    }
-    .upcoming-meetings {
-      .upcomings {
-        background-color: #fff;
-        box-shadow: 1px 4px 8px #77777739;
-      }
-    }
-  }
-}
+// @media (prefers-color-scheme: light) {
+//   .user-dashboard {
+//     background-color: #fbfbfb !important;
+//     .user-tasks {
+//       .user-tasks-summary {
+//         &1,
+//         &2,
+//         &3,
+//         &4 {
+//           background-color: #fff;
+//           box-shadow: 1px 4px 8px #77777739;
+//         }
+//       }
+//     }
+//     .user-projects {
+//       .user-projects-summary {
+//         background-color: #fff;
+//         box-shadow: 1px 4px 8px #77777739;
+//       }
+//     }
+//     .upcoming-meetings {
+//       .upcomings {
+//         background-color: #fff;
+//         box-shadow: 1px 4px 8px #77777739;
+//       }
+//     }
+//   }
+// }
 
 @media (max-width: 900px) {
   .user-dashboard {

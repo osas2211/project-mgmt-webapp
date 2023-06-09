@@ -13,6 +13,8 @@ import { Projects } from "./pages/Projects"
 import { Invitations } from "./pages/Invitations"
 import { Meetings } from "./pages/Meetings"
 import { ProjectDetails } from "./pages/ProjectDetails"
+import { Chats } from "./pages/Chats"
+import { Chat } from "./pages/Chat"
 
 function App() {
   const LandingPage = React.lazy(() => import("./pages/LandingPage"))
@@ -25,9 +27,7 @@ function App() {
       <Provider store={store}>
         <ConfigProvider
           theme={{
-            algorithm: window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? theme.darkAlgorithm
-              : theme.defaultAlgorithm,
+            algorithm: theme.defaultAlgorithm,
           }}
         >
           <Router>
@@ -69,6 +69,9 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="projects" element={<Projects />} />
                 <Route path="project/:id" element={<ProjectDetails />} />
+                <Route path="chats" element={<Chats />}>
+                  <Route path=":id" element={<Chat />} />
+                </Route>
                 <Route path="invitations" element={<Invitations />} />
                 <Route path="meetings" element={<Meetings />} />
                 <Route path="*" element={<_404 />} />

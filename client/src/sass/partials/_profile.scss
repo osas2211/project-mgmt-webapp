@@ -10,11 +10,17 @@
   min-height: 50rem;
   border-radius: 10px;
   margin-top: 1.5rem;
-  border: 1px solid #252323;
-  box-shadow: 2px 4px 16px #1c1c1c2c;
+  // border: 1px solid #252323;
+  // box-shadow: 2px 4px 16px #1c1c1c2c;
   padding: 1.5rem;
   box-sizing: border-box;
-  background-color: $dark_color;
+  // background-color: $dark_color;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  box-shadow: 2px 4px 16px #8787872c;
+  strong {
+    color: #2e2e2e;
+  }
 }
 .edit-profile {
   padding: 0.5rem 1rem;
@@ -28,13 +34,13 @@
   }
 }
 
-@media (prefers-color-scheme: light) {
-  .profile-main {
-    border: 1px solid #e8e8e8;
-    background-color: #fff;
-    box-shadow: 2px 4px 16px #8787872c;
-    strong {
-      color: #2e2e2e;
-    }
-  }
-}
+// @media (prefers-color-scheme: light) {
+//   .profile-main {
+//     border: 1px solid #e8e8e8;
+//     background-color: #fff;
+//     box-shadow: 2px 4px 16px #8787872c;
+//     strong {
+//       color: #2e2e2e;
+//     }
+//   }
+// }

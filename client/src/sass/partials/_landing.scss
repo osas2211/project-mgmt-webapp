@@ -19,7 +19,8 @@
     width: 65%;
     margin: auto;
     margin-top: 2rem;
-    color: $grey-color;
+    // color: $grey-color;
+    color: $dark-light-color;
     margin-bottom: 2.5rem;
     font-size: 18px;
   }
@@ -36,9 +37,12 @@
     border-radius: 14px;
     margin: 2rem auto;
     // box-shadow: 4px 8px 26px #0a16203e;
+    display: none;
   }
   &-img-light {
-    display: none;
+    // display: none;
+    display: block;
+    box-shadow: 1px 2px 16px #cecdcdb8;
   }
 }
 
@@ -50,7 +54,7 @@
   h2 {
     text-align: center;
     font-size: 3rem;
-    // font-family: $text_font, "Balthazar";
+    font-family: $text_font, "Balthazar";
     font-weight: 600;
   }
 
@@ -71,14 +75,15 @@
     h3 {
       font-size: 3rem;
       line-height: 3rem;
-      font-family: $text_font, "Balthazar";
+      // font-family: $text_font, "Balthazar";
       margin-bottom: 1rem;
     }
 
     &-text {
       flex-basis: 1;
       p {
-        color: $grey-color;
+        // color: $grey-color;
+        color: $dark-light-color;
       }
       a {
         margin: 1rem 0;
@@ -160,7 +165,8 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      background-color: $dark-light-color;
+      // background-color: $dark-light-color;
+      background-color: $grey-color;
       padding: 1rem;
       border-radius: 10px;
 
@@ -339,28 +345,28 @@ footer {
   }
 }
 
-@media (prefers-color-scheme: light) {
-  .hero {
-    p:first-child {
-      color: $dark-light-color;
-    }
-    &-img-dark {
-      display: none;
-    }
-    &-img-light {
-      display: block;
-      box-shadow: 1px 2px 16px #cecdcdb8;
-    }
-  }
+// @media (prefers-color-scheme: light) {
+//   .hero {
+//     p:first-child {
+//       color: $dark-light-color;
+//     }
+//     &-img-dark {
+//       display: none;
+//     }
+//     &-img-light {
+//       display: block;
+//       box-shadow: 1px 2px 16px #cecdcdb8;
+//     }
+//   }
 
-  .features .feature-text p {
-    color: $dark-light-color;
-  }
-  .tech_stack {
-    .tools {
-      .tool {
-        background-color: $grey-color;
-      }
-    }
-  }
-}
+//   .features .feature-text p {
+//     color: $dark-light-color;
+//   }
+//   .tech_stack {
+//     .tools {
+//       .tool {
+//         background-color: $grey-color;
+//       }
+//     }
+//   }
+// }

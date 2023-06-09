@@ -1,0 +1,72 @@
+.chats {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: inherit;
+  position: relative;
+  min-height: 78vh;
+}
+
+.chats-navigator {
+  position: fixed;
+  z-index: 30;
+  width: 18rem;
+  height: 100%;
+}
+
+.in-chat {
+  margin-left: 20rem;
+}
+
+.team-route {
+  display: flex;
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+  position: relative;
+  padding: 0.6rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  &:hover {
+    background-color: $light-color;
+  }
+  .time {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    opacity: 0.8;
+  }
+}
+
+.in-chat-header {
+  display: flex;
+  justify-content: space-between;
+
+  h3 {
+    margin-bottom: -4px;
+  }
+}
+
+.in-chat-box {
+  position: relative;
+  height: 120vh;
+  background-color: $light-color;
+  margin-top: 1rem;
+  border-radius: 8px;
+  padding: 1rem;
+  // overflow-y: scroll;
+  height: 35rem;
+}
+
+.messages {
+  height: 90%;
+  overflow-y: scroll;
+}
+
+.message-box {
+  position: absolute;
+  bottom: 1rem;
+  left: 2.5%;
+  width: 99%;
+  // transform: translateX(50%);
+  margin: auto;
+}

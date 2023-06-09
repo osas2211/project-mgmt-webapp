@@ -55,7 +55,7 @@ export const ProjectDetails = () => {
             <div>
               <h1 className="project-title">
                 {data?.project.title}{" "}
-                <Link to={"/main/chats"}>
+                <Link to={`/main/chats/${id}`}>
                   <Button type="dashed" icon={<WechatOutlined />}>
                     Chat
                   </Button>

@@ -2,6 +2,7 @@
   display: flex;
   margin-top: 4.9rem;
   overflow: hidden;
+  background-color: #fff;
 }
 
 .all-content > .page {
@@ -10,9 +11,11 @@
   border-top-right-radius: 0.5rem;
   width: 100%;
   margin: 1.5rem 1.5rem;
-  background-color: #232222;
+  // background-color: #232222;
+  background-color: #fbfbfb;
   transition: 0.3s ease-in-out;
   min-height: 80vh;
+  color: #2e2e2e;
 }
 .toggle-btn {
   position: fixed;
@@ -31,16 +34,16 @@
   }
 }
 
-@media (prefers-color-scheme: light) {
-  .all-content {
-    background-color: #fff;
-  }
-  .all-content > .page {
-    // background-color: #f6f6f6;
-    background-color: #fbfbfb;
-    color: #2e2e2e;
-  }
-}
+// @media (prefers-color-scheme: light) {
+//   .all-content {
+//     background-color: #fff;
+//   }
+//   .all-content > .page {
+//     // background-color: #f6f6f6;
+//     background-color: #fbfbfb;
+//     color: #2e2e2e;
+//   }
+// }
 
 @media (max-width: 1000px) {
   .all-content > .page {

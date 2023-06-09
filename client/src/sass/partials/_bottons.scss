@@ -13,7 +13,9 @@
 }
 
 .landing_btn_2 {
-  background-color: $dark-light-color;
+  // background-color: $dark-light-color;
+  background-color: #ededed;
+  @include reset-anchor($dark-blue);
   &:hover {
     opacity: 0.8;
   }
@@ -26,9 +28,9 @@
   }
 }
 
-@media (prefers-color-scheme: light) {
-  .landing_btn_2 {
-    background-color: #ededed;
-    @include reset-anchor($dark-blue);
-  }
-}
+// @media (prefers-color-scheme: light) {
+//   .landing_btn_2 {
+//     background-color: #ededed;
+//     @include reset-anchor($dark-blue);
+//   }
+// }
