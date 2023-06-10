@@ -54,7 +54,11 @@
   border-radius: 8px;
   padding: 1rem;
   // overflow-y: scroll;
-  height: 35rem;
+  height: 70vh;
+  // background-image: url(../../assets/chat-wallpaper.jpg);
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: contain;
 }
 
 .messages {
@@ -66,7 +70,7 @@
   position: absolute;
   bottom: 1rem;
   left: 2.5%;
-  width: 99%;
+  width: 95%;
   // transform: translateX(50%);
   margin: auto;
 }

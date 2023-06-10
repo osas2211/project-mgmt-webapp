@@ -1,5 +1,6 @@
 // import { LandingPage } from "./pages/LandingPage"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { connect } from "socket.io-client"
 import React, { Suspense } from "react"
 import { ConfigProvider, theme } from "antd"
 import _404 from "./pages/404"
@@ -15,6 +16,8 @@ import { Meetings } from "./pages/Meetings"
 import { ProjectDetails } from "./pages/ProjectDetails"
 import { Chats } from "./pages/Chats"
 import { Chat } from "./pages/Chat"
+
+const socket = connect(`http://localhost:${import.meta.env.VITE_SERVER_PORT}`)
 
 function App() {
   const LandingPage = React.lazy(() => import("./pages/LandingPage"))
