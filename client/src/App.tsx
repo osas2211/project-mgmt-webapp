@@ -71,9 +71,12 @@ function App() {
                 <Route path="profile" element={<UserProfile />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="projects" element={<Projects />} />
-                <Route path="project/:id" element={<ProjectDetails />} />
-                <Route path="chats" element={<Chats />}>
-                  <Route path=":id" element={<Chat />} />
+                <Route
+                  path="project/:id"
+                  element={<ProjectDetails socket={socket} />}
+                />
+                <Route path="chats" element={<Chats socket={socket} />}>
+                  <Route path=":id" element={<Chat socket={socket} />} />
                 </Route>
                 <Route path="invitations" element={<Invitations />} />
                 <Route path="meetings" element={<Meetings />} />

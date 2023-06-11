@@ -18,7 +18,7 @@ import {
 import { AddCollaborator } from "../components/AddCollaborator"
 import { MutateProject } from "../components/MutateProject"
 
-export const ProjectDetails = () => {
+export const ProjectDetails: React.FC<{ socket: any }> = ({ socket }) => {
   const { id } = useParams()
   const { data, isLoading, error, refetch } = useGetProjectQuery({ id })
   const { data: userData } = useGetUserSessionQuery("")
@@ -171,7 +171,11 @@ export const ProjectDetails = () => {
                     }
                   )}
                 />
-                <AddCollaborator refetch={refetch} id={data?.project.$id} />
+                <AddCollaborator
+                  refetch={refetch}
+                  id={data?.project.$id}
+                  socket={socket}
+                />
               </div>
             ) : (
               <></>

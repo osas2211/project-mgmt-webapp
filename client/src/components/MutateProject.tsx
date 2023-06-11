@@ -62,6 +62,7 @@ export const MutateProject: React.FC<{
               setOpenEdit(() => false)
               await refetchProjects()
             } catch (error: any) {
+              console.log(error)
               message.error(error.message)
             }
           }}

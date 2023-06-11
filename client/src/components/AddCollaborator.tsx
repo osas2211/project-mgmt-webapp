@@ -7,10 +7,11 @@ import {
   useGetUserSessionQuery,
 } from "../redux/services/projectify"
 
-export const AddCollaborator: React.FC<{ refetch: any; id: string }> = ({
-  refetch,
-  id,
-}) => {
+export const AddCollaborator: React.FC<{
+  refetch: any
+  id: string
+  socket: any
+}> = ({ refetch, id, socket }) => {
   const [userName, setUserName] = useState("")
   const [open, setOpen] = useState(false)
   const { data: userData } = useGetUserSessionQuery("")
@@ -40,6 +41,17 @@ export const AddCollaborator: React.FC<{ refetch: any; id: string }> = ({
             message.success("Collaborator Added")
             await refetch()
             await refetchProjects()
+            socket.emit("send_message", {
+              sender_id: "chat_bot",
+              message: `${userData?.name} just added ${userName} to the team`,
+              sender_image: userData?.prefs?.profile_picture,
+              room_id: id,
+              sender_name: "Chat Bot",
+              timestamp: new Date(),
+            })
+            setUserName("")
+            setOpen(false)
+            return () => socket.off("send_message")
           } catch (err: any) {
             message.error(err.data.message)
           }

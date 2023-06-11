@@ -43,7 +43,7 @@ export const UploadImage = () => {
       >
         <input
           type="file"
-          accept=".png, .jpg"
+          accept=".png, .jpg, .jpeg"
           placeholder="Choose Image"
           onChange={(e) => {
             if (!e.target.files) {

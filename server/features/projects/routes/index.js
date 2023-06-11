@@ -16,6 +16,6 @@ projectRouter.get("/projects", getProjects)
 projectRouter.get("/:id", getProject)
 projectRouter.patch("/:id", updateProject)
 projectRouter.delete("/:id", deleteProject)
-// projectRouter.post("/del", delA)
+projectRouter.post("/del", delA)
 
 export default projectRouter

@@ -3,8 +3,14 @@ import { Avatar, Input } from "antd"
 import img from "../assets/project3.png"
 import { Link, useParams } from "react-router-dom"
 import { TeamRoute } from "./TeamRoute"
+import {
+  useGetProjectsQuery,
+  useGetUserSessionQuery,
+} from "../redux/services/projectify"
 
-export const ChatsNavigator = () => {
+export const ChatsNavigator: React.FC<{ socket: any }> = ({ socket }) => {
+  const { data: userData } = useGetUserSessionQuery("")
+  const { data, isLoading } = useGetProjectsQuery({ jwt: userData?.jwt })
   const { id } = useParams()
   return (
     <div className="chats-navigator">
@@ -15,11 +21,18 @@ export const ChatsNavigator = () => {
         <Input.Search placeholder="Search Team" />
       </div>
       <div>
-        <TeamRoute img={img} id={id as string} />
-        <TeamRoute img={img} id={id as string} />
-        <TeamRoute img={img} id={id as string} />
-        <TeamRoute img={img} id={id as string} />
-        <TeamRoute img={img} id={id as string} />
+        {data?.projects.map((project: any) => {
+          return (
+            <TeamRoute
+              title={project.title}
+              img={project.project_cover}
+              id={project.$id as string}
+              key={project.$id}
+              last_message={JSON.parse(project?.last_message)}
+              socket={socket}
+            />
+          )
+        })}
       </div>
     </div>
   )

@@ -21,6 +21,8 @@ const users = new Users(globalClient)
 export const createProject = async (req, res, next) => {
   try {
     const { title, project_cover, email, ...rest } = req.body
+    // Create Team
+    // Team - Project - ChatRoom will share the same $id.
     const team = await teams.create(ID.unique(), title)
     await teams.createMembership(
       team.$id,
@@ -28,6 +30,8 @@ export const createProject = async (req, res, next) => {
       "http://localhost:8000",
       email
     )
+
+    // Create Project
     let project
     if (project_cover) {
       project = await db.createDocument(
@@ -44,6 +48,13 @@ export const createProject = async (req, res, next) => {
         { title, ...rest }
       )
     }
+
+    // Create ChatRoom
+    // const chatRoom = await db.createDocument(
+    //   process.env.DATABASE_ID,
+    //   process.env.CHATROOM_COLLECTION_ID,
+    //   team.$id
+    // )
     return res.status(200).json({
       success: true,
       data: { team, project },
@@ -154,6 +165,13 @@ export const updateProject = async (req, res) => {
     )
     // Update Team Name
     await teams.updateName(id, title)
+    // Update chatRoom
+    await db.updateDocument(
+      process.env.DATABASE_ID,
+      process.env.CHATROOM_COLLECTION_ID,
+      id,
+      { name: title }
+    )
     return res.status(200).json({
       success: true,
       message: "Project Updated Successfully",
@@ -202,7 +220,7 @@ export const delA = async (req, res, next) => {
   try {
     const docs = await db.listDocuments(
       process.env.DATABASE_ID,
-      process.env.PROJECT_COLLECTION_ID
+      process.env.MESSAGE_COLLECTION_ID
     )
     const ids = docs.documents.map((doc) => doc.$id)
     console.log(ids)
@@ -210,7 +228,7 @@ export const delA = async (req, res, next) => {
       async (id) =>
         await db.deleteDocument(
           process.env.DATABASE_ID,
-          process.env.PROJECT_COLLECTION_ID,
+          process.env.MESSAGE_COLLECTION_ID,
           id
         )
     )
