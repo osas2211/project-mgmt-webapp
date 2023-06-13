@@ -15,7 +15,8 @@ export const ChatsNavigator: React.FC<{ socket: any }> = ({ socket }) => {
   return (
     <div className="chats-navigator">
       <h2>
-        Teams ChatRooms <span style={{ color: "#1c93e1" }}>(29)</span>
+        Teams ChatRooms{" "}
+        <span style={{ color: "#1c93e1" }}>({data?.projects.length})</span>
       </h2>
       <div style={{ margin: "1rem 0" }}>
         <Input.Search placeholder="Search Team" />

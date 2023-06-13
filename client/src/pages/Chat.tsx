@@ -95,7 +95,7 @@ export const Chat: React.FC<{ socket: any }> = ({ socket }) => {
               <Message
                 id={message.sender_id}
                 message={message.message}
-                name={message.name}
+                name={message.sender_name}
                 timestamp={`${new Date(message.timestamp).toLocaleString()} `}
                 img={message.sender_image}
               />

@@ -62,7 +62,8 @@ export const Message: React.FC<{
             <small
               className="time"
               style={{
-                top: -20,
+                top: "105%",
+                // bottom: "-5rem",
                 display: "block",
                 width: "10rem",
                 right: id === data?.$id ? -20 : "initial",

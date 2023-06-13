@@ -16,7 +16,8 @@ export const Logout = () => {
     <div
       onClick={async () => {
         try {
-          await account.deleteSessions()
+          const session = await account.getSession("current")
+          await account.deleteSession(session.$id)
           window.location.reload()
         } catch (error) {}
       }}

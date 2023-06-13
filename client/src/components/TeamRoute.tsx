@@ -30,7 +30,7 @@ export const TeamRoute: React.FC<{
         <h3>{title}</h3>
         <small style={{ opacity: 0.8 }}>
           {/* {message.user_id}: {message.message.slice(0, 20)}... */}
-          {`${message.user_id}: ${message.message}`.slice(0, 28)}...
+          {`${message.user_id}: ${message.message}`.slice(0, 25)}...
         </small>
       </div>
       <small className="time">
