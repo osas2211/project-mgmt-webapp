@@ -4,8 +4,27 @@ import { TasksSummary } from "../components/TasksSummary"
 import { Icon } from "@mui/material"
 import { CallMadeOutlined } from "@mui/icons-material"
 import { MeetingNotification } from "../components/MeetingNotification"
+import {
+  useGetMeetingsQuery,
+  useGetProjectsQuery,
+  useGetUserSessionQuery,
+} from "../redux/services/projectify"
 
 export const Dashboard = () => {
+  const { data: userData } = useGetUserSessionQuery("")
+  const {
+    data: projectData,
+    refetch,
+    isLoading,
+    error,
+  } = useGetProjectsQuery({ jwt: userData?.jwt })
+  const {
+    data,
+    refetch: refetchMeetings,
+    isLoading: loadingMeetings,
+  } = useGetMeetingsQuery(
+    projectData?.projects?.map((project: any) => project.$id)
+  )
   return (
     <div className="user-dashboard page">
       <div className="user-dashboard-top">
@@ -43,24 +62,22 @@ export const Dashboard = () => {
                   </Link>
                 </div>
                 <div>
-                  <MeetingNotification
-                    title="Frontend Planning"
-                    date="14th June, 2023"
-                    time="8pm"
-                    color="#1c93e1"
-                  />
-                  <MeetingNotification
-                    title="Backend Planning"
-                    date="15th June, 2023"
-                    time="8am"
-                    color="#ffc20c"
-                  />
-                  <MeetingNotification
-                    title="Article Submission Planning"
-                    date="15th June, 2023"
-                    time="12:30pm"
-                    color="#FF595E"
-                  />
+                  {data?.slice(0, 3).map((meeting) => (
+                    <MeetingNotification
+                      // team="Dacade Project"
+                      title={meeting.title}
+                      date={new Date(meeting.day).toDateString()}
+                      time={new Date(meeting.time).toLocaleString("en-US", {
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                      })}
+                      color="#1c93e1"
+                      title_style={{ fontSize: "1.2rem" }}
+                      key={meeting.$id}
+                      id={meeting.$id}
+                    />
+                  ))}
                 </div>
               </div>
             </div>

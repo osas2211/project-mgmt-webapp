@@ -36,7 +36,6 @@ export default function () {
       setTimeout(() => navigate("/main/dashboard"), 700)
     } catch (error: any) {
       setLoading(false)
-      console.log(error)
       throw Error(error.message)
     }
   }

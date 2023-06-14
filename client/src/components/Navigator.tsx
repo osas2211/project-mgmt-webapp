@@ -8,6 +8,7 @@ import {
   TaskAltSharp,
   GroupAdd,
   ChatOutlined,
+  Bolt,
 } from "@mui/icons-material"
 import { Icon } from "@mui/material"
 import { Button, Progress } from "antd"
@@ -89,17 +90,17 @@ export const Navigator = () => {
             Meetings
           </li>
         </Link>
-        <Link to={"invitations"}>
-          <li className={pathname === "/main/invitations" ? "active-nav" : ""}>
+        <Link to={"timer"}>
+          <li className={pathname === "/main/timer" ? "active-nav" : ""}>
             <Icon
-              component={GroupAdd}
+              component={Bolt}
               style={{
                 fontSize: "1.7rem",
                 paddingRight: "1rem",
                 color: "#FFAFCC",
               }}
             />{" "}
-            Invitations
+            Timer
           </li>
         </Link>
       </ul>

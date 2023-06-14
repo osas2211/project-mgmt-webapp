@@ -6,7 +6,7 @@ import {
 } from "@reduxjs/toolkit/query/react"
 import type { User } from "../../types"
 import { mutations } from "../endpoints/mutation_endpoints"
-import { Client, Account, Models } from "appwrite"
+import { Client, Account, Models, Databases, Query } from "appwrite"
 import { queries } from "../endpoints/query_endpoints"
 
 const client = new Client()
@@ -36,6 +36,48 @@ export const projectifyApi = createApi({
           return {
             data: userData,
           }
+        } catch (error: any) {
+          return {
+            error: error.message,
+          }
+        }
+      },
+    }),
+    getMeetings: builder.query({
+      async queryFn(ids: string[]) {
+        const client = new Client()
+        client
+          .setEndpoint("https://cloud.appwrite.io/v1")
+          .setProject(import.meta.env.VITE_PROJECT_ID)
+        const db = new Databases(client)
+        try {
+          const meetings = await db.listDocuments(
+            import.meta.env.VITE_DATABASE_ID,
+            import.meta.env.VITE_MEETINGS_COLLECTION_ID,
+            [Query.equal("project", ids)]
+          )
+          return { data: meetings.documents }
+        } catch (error: any) {
+          return {
+            error: error.message,
+          }
+        }
+      },
+    }),
+    getMeeting: builder.query({
+      async queryFn(id: string) {
+        const client = new Client()
+        client
+          .setEndpoint("https://cloud.appwrite.io/v1")
+          .setProject(import.meta.env.VITE_PROJECT_ID)
+        const db = new Databases(client)
+        try {
+          const meeting = await db.getDocument(
+            import.meta.env.VITE_DATABASE_ID,
+            import.meta.env.VITE_MEETINGS_COLLECTION_ID,
+            id
+          )
+          return { data: meeting }
         } catch (error: any) {
           return {
             error: error.message,
@@ -82,4 +124,6 @@ export const {
   useDeleteProjectMutation,
   useUpdateProjectMutation,
   useAddCollaboratorMutation,
+  useGetMeetingsQuery,
+  useGetMeetingQuery,
 } = projectifyApi

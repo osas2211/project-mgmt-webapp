@@ -65,7 +65,8 @@ export const ProjectCard: React.FC<{
                   borderRadius: 5,
                 }}
               />{" "}
-              <small>{files_links.length}</small>
+              {/* <small>{files_links.length}</small> */}
+              <small>0</small>
             </div>
             <Avatar.Group
               maxCount={3}

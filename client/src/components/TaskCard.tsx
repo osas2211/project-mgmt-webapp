@@ -30,7 +30,7 @@ export const TaskCard: React.FC<{
   assigned_to: string
   assigned_by: string
   status: string
-  members: { label: string; value: string }[]
+  members?: { label: string; value: string }[]
   $id: string
   refetch: any
 }> = ({
@@ -60,7 +60,7 @@ export const TaskCard: React.FC<{
   const [status_, setStatus] = useState(status)
 
   return (
-    <div className="task-card">
+    <div className="task-card" style={{ marginTop: "1rem" }}>
       <Card hoverable draggable>
         <div
           style={{

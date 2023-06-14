@@ -6,7 +6,7 @@ import {
   UnorderedListOutlined,
 } from "@ant-design/icons"
 import { Col, Row, Tag, Avatar, Button, Spin } from "antd"
-import React from "react"
+import React, { useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
 import { TaskCard } from "../components/TaskCard"
 import { AddTask } from "../components/AddTask"
@@ -14,9 +14,18 @@ import {
   useGetProjectQuery,
   useGetUserSessionQuery,
   useGetTasksQuery,
+  useGetUserTasksQuery,
 } from "../redux/services/projectify"
 import { AddCollaborator } from "../components/AddCollaborator"
 import { MutateProject } from "../components/MutateProject"
+import { ScheduleMeeting } from "../components/ScheduleCall"
+import { Client, Databases, Account, ID } from "appwrite"
+
+const client = new Client()
+client
+  .setEndpoint("https://cloud.appwrite.io/v1")
+  .setProject(import.meta.env.VITE_PROJECT_ID)
+const db = new Databases(client)
 
 export const ProjectDetails: React.FC<{ socket: any }> = ({ socket }) => {
   const { id } = useParams()
@@ -29,6 +38,21 @@ export const ProjectDetails: React.FC<{ socket: any }> = ({ socket }) => {
   } = useGetTasksQuery({ id })
 
   const colors = ["gold", "green", "blue"]
+
+  useEffect(() => {
+    client.subscribe(
+      `databases.${import.meta.env.VITE_DATABASE_ID}.collections.${
+        import.meta.env.VITE_PROJECT_COLLECTION_ID
+      }.documents`,
+      (response: any) => {
+        // message.success("A new meeting has just been scheduled", 20)
+        refetchTask()
+          .unwrap()
+          .then((data) => console.log(data))
+      }
+    )
+  }, [])
+
   return (
     <div className="project page">
       {isLoading ? (
@@ -61,18 +85,25 @@ export const ProjectDetails: React.FC<{ socket: any }> = ({ socket }) => {
                   </Button>
                 </Link>
               </h1>
+              {userData?.$id === data?.project.manager ? (
+                <ScheduleMeeting />
+              ) : (
+                <></>
+              )}
             </div>
 
             <div>
               {userData?.$id === data?.project.manager ? (
-                <MutateProject
-                  refetch={refetch}
-                  $id={id as string}
-                  title={data?.project.title}
-                  description={data?.project.description}
-                  priority={data?.project.priority}
-                  status={data?.project.status}
-                />
+                <div>
+                  <MutateProject
+                    refetch={refetch}
+                    $id={id as string}
+                    title={data?.project.title}
+                    description={data?.project.description}
+                    priority={data?.project.priority}
+                    status={data?.project.status}
+                  />
+                </div>
               ) : (
                 <></>
               )}

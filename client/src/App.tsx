@@ -16,6 +16,9 @@ import { Meetings } from "./pages/Meetings"
 import { ProjectDetails } from "./pages/ProjectDetails"
 import { Chats } from "./pages/Chats"
 import { Chat } from "./pages/Chat"
+import { Timer } from "./pages/Timer"
+import { MeetingRoom } from "./pages/MeetingRoom"
+import { Workload } from "./pages/Workload"
 
 const socket = connect(`http://localhost:${import.meta.env.VITE_SERVER_PORT}`)
 
@@ -78,8 +81,11 @@ function App() {
                 <Route path="chats" element={<Chats socket={socket} />}>
                   <Route path=":id" element={<Chat socket={socket} />} />
                 </Route>
-                <Route path="invitations" element={<Invitations />} />
+                <Route path="timer" element={<Timer />} />
+
                 <Route path="meetings" element={<Meetings />} />
+                <Route path="meet" element={<MeetingRoom />} />
+                <Route path="tasks" element={<Workload />} />
                 <Route path="*" element={<_404 />} />
               </Route>
 
