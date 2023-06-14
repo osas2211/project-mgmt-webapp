@@ -220,7 +220,7 @@ export const delA = async (req, res, next) => {
   try {
     const docs = await db.listDocuments(
       process.env.DATABASE_ID,
-      process.env.MESSAGE_COLLECTION_ID
+      process.env.MEETINGS_COLLECTION_ID
     )
     const ids = docs.documents.map((doc) => doc.$id)
     console.log(ids)
@@ -228,7 +228,7 @@ export const delA = async (req, res, next) => {
       async (id) =>
         await db.deleteDocument(
           process.env.DATABASE_ID,
-          process.env.MESSAGE_COLLECTION_ID,
+          process.env.MEETINGS_COLLECTION_ID,
           id
         )
     )
