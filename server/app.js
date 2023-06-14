@@ -32,7 +32,7 @@ app.use(cors())
 // SOCKET.IO
 const socketIO = new Server(http, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://projectified.vercel.app/",
     methods: ["GET", "POST"],
   },
 })

@@ -17,7 +17,9 @@ const account = new Account(client)
 
 export const projectifyApi = createApi({
   reducerPath: "projectifyAPI",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api/v1/" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://projectify-prk7.onrender.com/api/v1/",
+  }),
   endpoints: (builder) => ({
     //SignUp
     signUp: mutations.signUpEndpoint(builder).signUp,

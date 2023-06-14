@@ -20,7 +20,8 @@ import { Timer } from "./pages/Timer"
 import { MeetingRoom } from "./pages/MeetingRoom"
 import { Workload } from "./pages/Workload"
 
-const socket = connect(`http://localhost:${import.meta.env.VITE_SERVER_PORT}`)
+// const socket = connect(`http://localhost:${import.meta.env.VITE_SERVER_PORT}`)
+const socket = connect(`https://projectify-prk7.onrender.com`)
 
 function App() {
   const LandingPage = React.lazy(() => import("./pages/LandingPage"))

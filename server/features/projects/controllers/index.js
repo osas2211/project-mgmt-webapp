@@ -220,18 +220,27 @@ export const delA = async (req, res, next) => {
   try {
     const docs = await db.listDocuments(
       process.env.DATABASE_ID,
-      process.env.MEETINGS_COLLECTION_ID
+      process.env.TASK_COLLECTION_ID
     )
+
     const ids = docs.documents.map((doc) => doc.$id)
     console.log(ids)
     ids.forEach(
       async (id) =>
         await db.deleteDocument(
           process.env.DATABASE_ID,
-          process.env.MEETINGS_COLLECTION_ID,
+          process.env.TASK_COLLECTION_ID,
           id
         )
     )
+
+    // const allFiles = (await storage.listFiles(process.env.BUCKET_ID)).files.map(
+    //   (file) => file.$id
+    // )
+
+    // allFiles.forEach(
+    //   async (id) => await storage.deleteFile(process.env.BUCKET_ID, id)
+    // )
 
     // const teams_ = await teams.list()
     // const ids = teams_.teams.map((team) => team.$id)
