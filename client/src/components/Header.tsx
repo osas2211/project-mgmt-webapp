@@ -20,10 +20,10 @@ export const Header: React.FC<{ name: string; id: string }> = ({
           {/* <li>
             <Icon component={DarkModeIcon} />
           </li> */}
-          <li className="notification-bell">
+          {/* <li className="notification-bell">
             <div className="notification-numbers">12</div>
             <BellFilled />
-          </li>
+          </li> */}
           <UserDropDown name={name} id={id} />
         </ul>
       </header>
