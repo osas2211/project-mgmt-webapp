@@ -100,7 +100,7 @@ export const Navigator = () => {
                 color: "#FFAFCC",
               }}
             />{" "}
-            Be Productivity
+            Be Productive
           </li>
         </Link>
       </ul>
