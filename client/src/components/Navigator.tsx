@@ -100,7 +100,7 @@ export const Navigator = () => {
                 color: "#FFAFCC",
               }}
             />{" "}
-            Timer
+            Be Productivity
           </li>
         </Link>
       </ul>

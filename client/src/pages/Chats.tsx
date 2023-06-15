@@ -7,6 +7,9 @@ export const Chats: React.FC<{
 }> = ({ socket }) => {
   return (
     <div className="chats-page page">
+      <div className="on-desktop">
+        Chat Feature is only available on desktop
+      </div>
       <div className="chats">
         <ChatsNavigator socket={socket} />
         <Outlet />

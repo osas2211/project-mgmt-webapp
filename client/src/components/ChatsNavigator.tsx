@@ -1,5 +1,5 @@
 import React from "react"
-import { Avatar, Input } from "antd"
+import { Avatar, Divider, Input } from "antd"
 import img from "../assets/project3.png"
 import { Link, useParams } from "react-router-dom"
 import { TeamRoute } from "./TeamRoute"
@@ -19,8 +19,9 @@ export const ChatsNavigator: React.FC<{ socket: any }> = ({ socket }) => {
         <span style={{ color: "#1c93e1" }}>({data?.projects.length})</span>
       </h2>
       <div style={{ margin: "1rem 0" }}>
-        <Input.Search placeholder="Search Team" />
+        {/* <Input.Search placeholder="Search Team" /> */}
       </div>
+      <Divider />
       <div>
         {data?.projects.map((project: any) => {
           return (

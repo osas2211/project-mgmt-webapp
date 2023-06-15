@@ -1,0 +1,302 @@
+$dark-blue: #18152b;
+$primary-white: #eeeeff;
+$primary-dark: #111111;
+$primary-blue: #7464fb;
+$empty-dark: #302b53;
+$primary-gray: #ffffff38;
+
+@mixin flex-container($direction, $align, $justify, $wrap) {
+  display: flex;
+  flex-wrap: $wrap;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+@mixin button-component($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+}
+@mixin container-width($cont-width) {
+  width: 100%;
+  max-width: $cont-width;
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+
+// Different Classes
+.container-1000 {
+  @include container-width(1000px);
+}
+.container-1200 {
+  @include container-width(1200px);
+}
+.container-1400 {
+  @include container-width(1400px);
+}
+
+// Stuffs related to the fluid typography from the CSS tricks
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+        );
+      }
+
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+// All related to svg
+svg {
+  cursor: pointer;
+}
+
+.filler-line {
+  width: 100%;
+  height: 1px;
+  background-color: $primary-gray;
+  margin: 10px 0;
+}
+
+input {
+  color: $primary-white;
+}
+.btn {
+  padding: 15px 60px;
+  display: inline-block;
+  cursor: pointer;
+  &-configure {
+    border: 2px solid $primary-blue;
+  }
+}
+
+//Extra Classes
+// .btn,btn-icon{
+//   padding: 10px 15px;
+//   background-color: $empty-dark;
+// }
+// Links Styling
+.social__links {
+  // background-color: pink;
+  @include flex-container(row, center, center, wrap);
+  li {
+    padding: 5px;
+    svg {
+      transition: all 0.5s ease;
+      &:hover {
+        fill: $primary-white;
+      }
+    }
+  }
+}
+
+//Real Styling
+// body {
+//   background-color: $dark-blue;
+//   color: $primary-white;
+// }
+
+//Styling the app section
+.main__page {
+  // min-height: 100vh;
+  // height: 100%;
+  // width: 100vw;
+  @include flex-container(column, stretch, space-between, no-wrap);
+}
+
+//Styling the Header Section
+.header__section {
+  // background-color: pink;
+  border-bottom: 1px solid $empty-dark;
+  @include flex-container(row, center, space-between, wrap);
+  padding: 15px;
+  #{&}--title {
+    text-transform: uppercase;
+    // background-color: pink;
+    @include flex-container(row, center, center, wrap);
+    svg {
+      cursor: default;
+      margin: 5px;
+    }
+  }
+  #{&}--info {
+    @include flex-container(row, center, center, wrap);
+    &-title {
+      padding: 10px 15px;
+      background-color: $empty-dark;
+      cursor: pointer;
+    }
+  }
+}
+
+//Styling the footer Section
+.footer__section {
+  // font-style: italic;
+  border-top: 1px solid $empty-dark;
+  @include flex-container(row, center, center, wrap);
+  text-align: center;
+  padding: 25px;
+  // color: #616b9b;
+  // #{&}--circle{
+  //   background-color: $primary-blue;
+  //   height: 60px;
+  //   width: 60px;
+  //   color: $primary-dark;
+  //   border-radius: 50%;
+  //   @include flex-container(row, center, center, wrap);
+  //   cursor: pointer;
+  //   font-size: 22.5px;
+  // }
+}
+
+//Styling the Main Section
+.main__section {
+  @include flex-container(row, center, center, wrap);
+  padding: 70px;
+  // background-color: pink;
+  > div {
+    @include flex-container(column, center, center, wrap);
+  }
+  &--icons {
+    @include flex-container(row, center, center, no-wrap);
+    @media screen and (max-width: 365px) {
+      flex-direction: column;
+    }
+    & > div {
+      cursor: pointer;
+      margin: 10px;
+      > div {
+        padding: 15px;
+        background-color: $empty-dark;
+      }
+    }
+    .btn-restart {
+      padding: 15px;
+      background-color: $empty-dark;
+    }
+  }
+}
+
+//All related to the configure page..
+.configure__section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include flex-container(row, center, center, wrap);
+  background-color: $light-color;
+  min-height: 100vh;
+  height: 100%;
+
+  &--box {
+    padding: 45px;
+    background-color: $grey-color;
+    width: 50vw;
+    @media screen and (max-width: 1200px) {
+      width: 60vw;
+    }
+    @media screen and (max-width: 950px) {
+      width: 70vw;
+    }
+    @media screen and (max-width: 700px) {
+      width: 80vw;
+    }
+    @media screen and (max-width: 580px) {
+      width: 95vw;
+    }
+    &-upper {
+      @include flex-container(row, center, space-between, no-wrap);
+    }
+  }
+  &--form {
+    label {
+      padding: 15px 0;
+    }
+    &-btn {
+      text-align: center;
+      margin-top: 40px;
+    }
+  }
+
+  label {
+    display: block;
+  }
+  input,
+  select {
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid $primary-dark;
+    padding: 15px;
+    color: $dark-blue;
+  }
+
+  option {
+    color: $primary-white;
+    background-color: $dark-blue;
+    margin: 5px 0;
+    padding: 20px;
+    border: none;
+  }
+}
+
+// All related to the Input field
+
+.submit-btn {
+  border: 1px solid $primary-blue;
+  color: $primary-dark;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+// ALl about the countdownsvg
+.base__timer {
+  // background-color: pink;
+  position: relative;
+  height: 300px;
+  width: 300px;
+  &--svg {
+    fill: none;
+    stroke: none;
+    /* Flips the svg and makes the animation to move left-to-right */
+    transform: scaleX(-1);
+  }
+  &--path-elapsed {
+    stroke-width: 5px;
+    stroke: $primary-blue;
+    fill: none;
+  }
+  &--label {
+    position: absolute;
+    // background-color: pink;
+    width: 300px;
+    height: 300px;
+    top: 0;
+    @include flex-container(column, center, center, no-wrap);
+    h1 {
+      margin: 30px 0px 30px;
+      text-align: center;
+    }
+    p {
+      color: $primary-white;
+      text-align: center;
+    }
+  }
+}

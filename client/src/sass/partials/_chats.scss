@@ -74,3 +74,22 @@
   // transform: translateX(50%);
   margin: auto;
 }
+
+.on-desktop {
+  display: none;
+}
+
+@media (max-width: 750px) {
+  .chats {
+    display: none;
+  }
+
+  .on-desktop {
+    display: block;
+    width: 80%;
+    margin: auto;
+    height: 20rem;
+    font-size: 2rem;
+    opacity: 0.8;
+  }
+}

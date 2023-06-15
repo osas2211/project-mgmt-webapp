@@ -12,7 +12,6 @@ export const TeamRoute: React.FC<{
   const [message, setMessage] = useState(last_message)
   useEffect(() => {
     socket.on("last_message", (data: any) => {
-      console.log(data)
       if (data.room_id === id) {
         setMessage({
           user_id: data.user_id,
